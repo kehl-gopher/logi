@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
+	"path/filepath"
 	"sync"
 
 	lg "gopkg.in/natefinch/lumberjack.v2"
@@ -54,8 +55,10 @@ func newFlogger(l *lg.Logger) fLogger {
 	return &fLog{log: faLog}
 }
 func NewLogger(mode string) Logger {
+	dir, _ := BasePath()
+	LOG_DIR := filepath.Join(dir, "logs", "app.log")
 	lumLog := &lg.Logger{
-		Filename:   "./logs/app.log",
+		Filename:   LOG_DIR,
 		MaxSize:    10,
 		MaxBackups: 3,
 		MaxAge:     30,
@@ -130,7 +133,7 @@ func PrintLog(log *Log, message string, level LogLevel, args ...interface{}) {
 		log.fLog.fatalLog(message, args)
 		log.lmutex.Unlock()
 	}
-	
+
 	log.lmutex.Lock()
 	buf := bufio.NewWriter(os.Stdout)
 	buf.Write([]byte(message))
