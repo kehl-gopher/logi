@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: infra/Dockerfile
+      target: dev
+    container_name: logi-app-dev
+    environment:
+      DATABASE_URL: postgres://logi:logi123@postgres:5432/logi-db
+      REDIS_URL: redis://redis:6379/0
+      ENV: dev
+    volumes:
+      - type: bind
+        source: ../
+        target: /app/
+    networks:
+      - logi-network
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: logi-db
+      POSTGRES_USER: logi
+      POSTGRES_PASSWORD: logi123
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+    ports:
+      - "5432:5432"
+    networks:
+      - logi-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis-cache
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - logi-network
+
+volumes:
+  pgdata:
+
+networks:
+  logi-network:

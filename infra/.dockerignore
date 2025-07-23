@@ -1,0 +1,6 @@
+.git
+*.md
+*.toml
+log/
+infra/
+logs/
