@@ -17,6 +17,8 @@ log/
 coverage.*
 *.coverprofile
 profile.cov
+*.toml
+tmp/
 
 # Dependency directories (remove the comment below to include it)
 # vendor/

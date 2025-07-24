@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   app:
     build:
@@ -15,7 +13,7 @@ services:
       DB_HOST: ${POSTGRES_HOST}
       RED_PORT: ${RED_PORT}
       RED_ADDR: ${RED_ADDR}
-      APP_ENV: dev
+      APP_ENV: ${APP_ENV}
     volumes:
       - type: bind
         source: ../

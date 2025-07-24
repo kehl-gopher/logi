@@ -1,11 +1,15 @@
 package handlers
 
 import (
+	"context"
 	"net/http"
-	"os"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/kehl-gopher/logi/internal/config"
+	"github.com/kehl-gopher/logi/internal/utils"
+	"github.com/kehl-gopher/logi/pkg/repository/pdb"
+	"github.com/kehl-gopher/logi/pkg/repository/rdb"
 )
 
 type HealthResponse struct {
@@ -18,13 +22,32 @@ type HealthResponse struct {
 
 var startTime = time.Now()
 
-func Health(c *gin.Context) {
+type Handler struct {
+	Log  *utils.Log
+	Conf *config.Config
+	Db   pdb.Database
+	Rdb  rdb.RedisDB
+}
+
+func (h *Handler) Health(c *gin.Context) {
 	uptime := time.Since(startTime)
-	c.JSON(http.StatusOK, gin.H{
-		"healthy":     true,
-		"version":     "1.0.0",
-		"uptime":      uptime.String(),
-		"timestamp":   time.Now().Format(time.RFC3339),
-		"environment": os.Getenv("APP_ENV"), // e.g., "dev", "prod"
-	})
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	dHealth := h.Db.PingDB()
+	rHealth := h.Rdb.PingCache(ctx)
+
+	healthy := dHealth && rHealth
+
+	hr := HealthResponse{
+		Healthy:   healthy,
+		Version:   h.Conf.APP_CONFIG.APP_VERSION,
+		Uptime:    uptime.String(),
+		Timestamp: time.Now().String(),
+		Checks: map[string]bool{
+			"postgres-healthy": dHealth,
+			"redis-healthy":    rHealth,
+		},
+	}
+	c.JSON(http.StatusOK, hr)
 }

@@ -13,28 +13,31 @@ import (
 	"github.com/uptrace/bun/dialect/pgdialect"
 )
 
-type PostgresDB interface {
-	ConnectPostgres() (*bun.DB, error)
+type Database interface {
+	ConnectPostgres() error
+	PingDB() bool
+	Close()
 }
 
 type postgresConn struct {
 	conf *config.Config
 	log  *utils.Log
+	bun  *bun.DB
 }
 
-func NewPostgresConn(conf *config.Config, logs *utils.Log) PostgresDB {
+func NewPostgresConn(conf *config.Config, logs *utils.Log) Database {
 	return &postgresConn{
 		conf: conf,
 		log:  logs,
 	}
 }
 
-func (p *postgresConn) ConnectPostgres() (*bun.DB, error) {
+func (p *postgresConn) ConnectPostgres() error {
 	port, err := utils.PortResolver(p.conf.Postgres.Port)
 
 	if err != nil {
 		utils.PrintLog(p.log, err.Error(), utils.ErrorLevel)
-		return nil, err
+		return err
 	}
 
 	dsn := connString(
@@ -46,12 +49,20 @@ func (p *postgresConn) ConnectPostgres() (*bun.DB, error) {
 	connPool, err := poolConfig(dsn)
 	if err != nil {
 		utils.PrintLog(p.log, err.Error(), utils.ErrorLevel)
-		return nil, err
+		return err
 	}
 
 	sqldb := stdlib.OpenDBFromPool(connPool)
 	bun := bun.NewDB(sqldb, pgdialect.New())
-	return bun, nil
+
+	if err := bun.Ping(); err != nil {
+		utils.PrintLog(p.log, err.Error(), utils.FatalLevel)
+		return err
+	}
+	p.bun = bun
+
+	utils.PrintLog(p.log, "Database connection successful", utils.InfoLevel)
+	return nil
 }
 
 func poolConfig(connString string) (*pgxpool.Pool, error) {
@@ -86,4 +97,14 @@ func poolConfig(connString string) (*pgxpool.Pool, error) {
 func connString(user, password, host, dbname, sslmode string, port int) string {
 	return fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=%s",
 		user, password, host, port, dbname, sslmode)
+}
+
+func (p *postgresConn) PingDB() bool {
+	return p.bun.Ping() == nil
+}
+
+func (p *postgresConn) Close() {
+	if p.bun != nil {
+		p.bun.Close()
+	}
 }

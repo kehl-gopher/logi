@@ -1,4 +1,4 @@
-FROM golang:1-24.4-bullseye AS build
+FROM golang:1.24.4-bullseye AS build
 
 WORKDIR /app/
 
@@ -11,24 +11,21 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 
 FROM build AS dev
 
-RUN go install github.com/cosmtrek/air@latest && \
+RUN go install github.com/air-verse/air@latest 
+
 COPY ../ .
+
 CMD ["air", "-c", ".air.toml"]
 
 FROM build AS prod
 
 RUN useradd -u 1001 logi
 
-RUN go build \
-    -ldflags=" -w -s -linkmode external -extldflags -static" \
-    -tags netgo \
-    -o healthcheck \
-    ./health/health.go
 
 RUN go build \
     -ldflags="-w -s -linkmode external -extldflags -static" \
     -tags netgo \
-    -o logi-api
+    -o main
 
 FROM scratch AS final-prod
 
@@ -37,8 +34,7 @@ ENV GIN_MODE=release
 WORKDIR /app/
 
 COPY --from=prod /etc/passwd /etc/passwd
-COPY --from=prod /app/health/healthcheck healthcheck
-COPY --from=prod /app/logi-api logi-api
+COPY --from=prod /app/main main
 
 USER logi
 

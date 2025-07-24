@@ -1,0 +1,65 @@
+{"time":"2025-07-24T18:48:08.603458717+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T18:48:08.603812091+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T18:50:53.437994755+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T18:50:53.438188165+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T18:52:20.210165487+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T18:52:20.210303514+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T18:58:17.206213229+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T18:58:17.206333057+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T19:00:27.373348839+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T19:00:27.373536199+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T19:00:50.020181961+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T19:00:50.02029336+01:00","level":"ERROR","msg":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"time":"2025-07-24T19:10:37.053422978+01:00","level":"ERROR","msg":"cannot parse `postgres://logi:xxxxx@localhost:5432/logi?sslmode=disabled`: failed to configure TLS (sslmode is invalid)"}
+{"time":"2025-07-24T19:10:37.053818414+01:00","level":"ERROR","msg":"cannot parse `postgres://logi:xxxxx@localhost:5432/logi?sslmode=disabled`: failed to configure TLS (sslmode is invalid)"}
+{"time":"2025-07-24T19:11:57.960850076+01:00","level":"FATAL","msg":"failed to connect to `user=logi database=logi`: [::1]:5432 (localhost): failed SASL auth: FATAL: password authentication failed for user \"logi\" (SQLSTATE 28P01)","!BADKEY":null}
+{"time":"2025-07-24T19:11:57.961014008+01:00","level":"ERROR","msg":"failed to connect to `user=logi database=logi`: [::1]:5432 (localhost): failed SASL auth: FATAL: password authentication failed for user \"logi\" (SQLSTATE 28P01)"}
+{"time":"2025-07-24T18:37:29.528655798Z","level":"FATAL","msg":"failed to connect to `user=logi database=logi`:\n\t127.0.0.1:5432 (localhost): dial error: dial tcp 127.0.0.1:5432: connect: connection refused\n\t[::1]:5432 (localhost): dial error: dial tcp [::1]:5432: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:37:29.535278333Z","level":"ERROR","msg":"failed to connect to `user=logi database=logi`:\n\t127.0.0.1:5432 (localhost): dial error: dial tcp 127.0.0.1:5432: connect: connection refused\n\t[::1]:5432 (localhost): dial error: dial tcp [::1]:5432: connect: connection refused"}
+{"time":"2025-07-24T19:38:31.121572132+01:00","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T19:38:31.124431068+01:00","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:39:15.678633078Z","level":"FATAL","msg":"failed to connect to `user=logi database=logi`:\n\t127.0.0.1:5432 (localhost): dial error: dial tcp 127.0.0.1:5432: connect: connection refused\n\t[::1]:5432 (localhost): dial error: dial tcp [::1]:5432: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:39:15.67925773Z","level":"ERROR","msg":"failed to connect to `user=logi database=logi`:\n\t127.0.0.1:5432 (localhost): dial error: dial tcp 127.0.0.1:5432: connect: connection refused\n\t[::1]:5432 (localhost): dial error: dial tcp [::1]:5432: connect: connection refused"}
+{"time":"2025-07-24T18:48:26.341241906Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:48:26.412255751Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:48:26.413207672Z","level":"ERROR","msg":"dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:51:12.707569714Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:51:12.778444009Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:51:12.77897598Z","level":"ERROR","msg":"dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:51:15.880555659Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:51:15.948417547Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:51:15.948683724Z","level":"ERROR","msg":"dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:51:28.550805421Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:51:28.623734137Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:51:28.62520061Z","level":"ERROR","msg":"dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:51:31.156070262Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:51:31.224825008Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:51:31.225130849Z","level":"ERROR","msg":"dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:51:55.35878797Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:51:55.427767487Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:51:55.428086659Z","level":"ERROR","msg":"dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:52:12.085825966Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:52:12.154926401Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:52:12.155226737Z","level":"ERROR","msg":"failed to connect to redis dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:52:19.581993529Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:52:19.64973728Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:52:19.650377478Z","level":"ERROR","msg":"failed to connect to redis dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:52:32.220341201Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:52:32.29097521Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:52:32.291453759Z","level":"ERROR","msg":"failed to connect to redis dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:52:35.880774088Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:52:35.951795159Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:52:35.952599789Z","level":"ERROR","msg":"failed to connect to redis dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:52:37.56145824Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:52:37.628881841Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:52:37.62918411Z","level":"ERROR","msg":"failed to connect to redis dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:53:38.808660154Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:53:38.876333759Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:53:38.876652472Z","level":"ERROR","msg":"failed to connect to redis dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:53:47.274016407Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:53:47.341386511Z","level":"FATAL","msg":"dial tcp [::1]:6379: connect: connection refused","!BADKEY":null}
+{"time":"2025-07-24T18:53:47.341624093Z","level":"ERROR","msg":"failed to connect to redis dial tcp [::1]:6379: connect: connection refused"}
+{"time":"2025-07-24T18:56:17.854832632Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:56:17.857799979Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-24T18:56:53.884779955Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-24T18:56:53.886647543Z","level":"INFO","msg":"redis connection successful"}
