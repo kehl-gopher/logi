@@ -134,9 +134,9 @@ func PrintLog(log *Log, message string, level LogLevel, args ...interface{}) {
 		log.lmutex.Unlock()
 	}
 
-	log.lmutex.Lock()
 	buf := bufio.NewWriter(os.Stdout)
-	buf.Write([]byte(message))
+	log.lmutex.Lock()
+	_, _ = buf.Write([]byte(message))
 	fmt.Fprintln(buf, args...)
 	buf.Flush()
 	log.lmutex.Unlock()

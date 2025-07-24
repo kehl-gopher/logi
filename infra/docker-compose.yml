@@ -9,8 +9,8 @@ services:
     container_name: logi-app-dev
     environment:
       DATABASE_URL: postgres://logi:logi123@postgres:5432/logi-db
-      REDIS_URL: redis://redis:6379/0
-      ENV: dev
+      REDIS_URL: redis://redis:6379
+      APP_ENV: dev
     volumes:
       - type: bind
         source: ../
