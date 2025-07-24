@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/joho/godotenv"
+	"github.com/kehl-gopher/logi/internal/config"
 	"github.com/kehl-gopher/logi/internal/utils"
 )
 
@@ -13,6 +14,6 @@ func main() {
 		return
 	}
 
-
-	
+	// load config variables
+	config.LoadConfig(log)
 }
