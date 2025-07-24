@@ -21,13 +21,6 @@ const (
 	FatalLevel
 )
 
-type Logger interface {
-	infoLog(message string, args ...interface{})
-	warnLog(message string, args ...interface{})
-	debugLog(message string, args ...interface{})
-	errorLog(message string, args ...interface{})
-}
-
 type fLogger interface {
 	fatalLog(message string, args ...interface{})
 }
@@ -54,7 +47,7 @@ func newFlogger(l *lg.Logger) fLogger {
 	}))
 	return &fLog{log: faLog}
 }
-func NewLogger(mode string) Logger {
+func NewLogger() *Log {
 	dir, _ := BasePath()
 	LOG_DIR := filepath.Join(dir, "logs", "app.log")
 	lumLog := &lg.Logger{

@@ -8,8 +8,13 @@ services:
       target: dev
     container_name: logi-app-dev
     environment:
-      DATABASE_URL: postgres://logi:logi123@postgres:5432/logi-db
-      REDIS_URL: redis://redis:6379
+      DB_USER: ${POSTGRES_USER}
+      DB_PASS: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DBNAME}
+      DB_PORT: ${POSTGRES_PORT}
+      DB_HOST: ${POSTGRES_HOST}
+      RED_PORT: ${RED_PORT}
+      RED_ADDR: ${RED_ADDR}
       APP_ENV: dev
     volumes:
       - type: bind
@@ -25,11 +30,11 @@ services:
     image: postgres:16-alpine
     container_name: postgres-db
     environment:
-      POSTGRES_DB: logi-db
-      POSTGRES_USER: logi
-      POSTGRES_PASSWORD: logi123
+      POSTGRES_DB: ${POSTGRES_DBNAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - pgdata:/var/lib/postgresql/data 
+      - pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:

@@ -30,9 +30,8 @@ func (r *redisConn) ConnectRedis() (*redis.Client, error) {
 	addr := fmt.Sprintf("%s:%d", r.conf.RedisDB.Address, port)
 	red := redis.NewClient(
 		&redis.Options{
-			Addr:     addr,
-			Password: r.conf.RedisDB.Password,
-			DB:       0,
+			Addr: addr,
+			DB:   0,
 		},
 	)
 	return red, nil
