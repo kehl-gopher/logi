@@ -11,7 +11,9 @@ type PostgresDB struct {
 }
 
 type RedisDB struct {
-	RedisUrl string
+	Address  string
+	Port     string
+	Password string
 }
 
 type Config struct {
