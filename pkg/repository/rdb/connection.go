@@ -17,7 +17,11 @@ type redisConn struct {
 	conf *config.Config
 }
 
-func (r *redisConn) ConnectRedis() (*redis.CLient, error) {
+func NewRedisConn(log *utils.Log, conf *config.Config) RedisDB {
+	return &redisConn{log: log, conf: conf}
+}
+
+func (r *redisConn) ConnectRedis() (*redis.Client, error) {
 	port, err := utils.PortResolver(r.conf.RedisDB.Port)
 	if err != nil {
 		return nil, err
@@ -31,6 +35,5 @@ func (r *redisConn) ConnectRedis() (*redis.CLient, error) {
 			DB:       0,
 		},
 	)
-
 	return red, nil
 }
