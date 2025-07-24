@@ -41,9 +41,9 @@ jobs:
         run: |
           unformatted=$(gofmt -l .)
           if [ -n "$unformatted" ]; then
-            echo "🚨 The following files are not formatted:"
+            echo "The following files are not well formatted:"
             echo "$unformatted"
-            echo "💡 Run 'gofmt -w .' to fix formatting."
+            echo "Run 'gofmt -w .' to fix formatting."
             exit 1
           fi
 

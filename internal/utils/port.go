@@ -6,7 +6,6 @@ import (
 	"strconv"
 )
 
-
 var ErrInvalidPort = errors.New("invalid port provided")
 
 func PortResolver(port string) (int, error) {
