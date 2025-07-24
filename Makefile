@@ -17,8 +17,10 @@ test:
 	go test ./tests/...
 	
 fmt:
-	gofmt -l .
-	gofmt -w .
+	@gofmt -w .
+
+add: fmt
+	git add .
 
 clean:
 	rm ./main
