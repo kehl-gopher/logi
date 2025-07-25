@@ -65,3 +65,27 @@
 {"time":"2025-07-24T18:56:53.886647543Z","level":"INFO","msg":"redis connection successful"}
 {"time":"2025-07-24T19:00:41.606548949Z","level":"INFO","msg":"Database connection successful"}
 {"time":"2025-07-24T19:00:41.611270112Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T09:35:18.26141445+01:00","level":"FATAL","msg":"failed to connect to `user=logi database=logi`: hostname resolving error: lookup postgres on 192.168.1.1:53: no such host","!BADKEY":null}
+{"time":"2025-07-25T09:35:18.280726104+01:00","level":"ERROR","msg":"failed to connect to database: failed to connect to `user=logi database=logi`: hostname resolving error: lookup postgres on 192.168.1.1:53: no such host"}
+{"time":"2025-07-25T08:39:33.628027584Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T08:39:33.629970539Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T08:44:53.227767913Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T08:44:53.230043402Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T09:11:03.323868831Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T09:11:03.326261842Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T09:11:05.959602044Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T09:11:05.963078749Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T09:11:17.962258886Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T09:11:17.965757152Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T09:11:32.711362487Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T09:11:32.724449067Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T09:11:40.886244546Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T09:11:40.896534457Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T09:11:47.568510012Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T09:11:47.571497857Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T09:11:51.715401547Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T09:11:51.718108096Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T09:11:55.87836277Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T09:11:55.880734625Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T09:11:58.921765374Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T09:11:58.92562466Z","level":"INFO","msg":"redis connection successful"}

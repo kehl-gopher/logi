@@ -1,0 +1,6 @@
+CREATE TABLE auth (
+    id TEXT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
