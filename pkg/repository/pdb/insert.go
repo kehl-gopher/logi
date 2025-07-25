@@ -2,6 +2,7 @@ package pdb
 
 import (
 	"context"
+	"database/sql"
 	"errors"
 	"fmt"
 
@@ -27,18 +28,25 @@ func (p *postgresConn) Insert(ctx context.Context, model interface{}) error {
 	return nil
 }
 
-// bulk insert...
 func (p *postgresConn) InsertMany(ctx context.Context, models ...interface{}) error {
 	tx, err := p.bun.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 
-	defer tx.Rollback()
-
-	_, err = tx.NewInsert().Model(&models).Exec(ctx)
-	if err != nil {
-		return err // rollback happens here
+	if _, err := tx.NewInsert().Model(&models).Exec(ctx); err != nil {
+		if rerr := tx.Rollback(); rerr != nil && rerr != sql.ErrTxDone {
+			return fmt.Errorf("insert error: %v, rollback error: %v", err, rerr)
+		}
+		return err
 	}
-	return tx.Commit()
+
+	if err := tx.Commit(); err != nil {
+		if rerr := tx.Rollback(); rerr != nil && rerr != sql.ErrTxDone {
+			return fmt.Errorf("commit error: %v, rollback error: %v", err, rerr)
+		}
+		return err
+	}
+
+	return nil
 }
