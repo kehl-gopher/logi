@@ -89,3 +89,26 @@
 {"time":"2025-07-25T09:11:55.880734625Z","level":"INFO","msg":"redis connection successful"}
 {"time":"2025-07-25T09:11:58.921765374Z","level":"INFO","msg":"Database connection successful"}
 {"time":"2025-07-25T09:11:58.92562466Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T18:00:56.16154505Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T18:00:56.166507277Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T18:01:05.777489251Z","level":"ERROR","msg":"unexpected db error: ERROR: relation \"auths\" does not exist (SQLSTATE 42P01)"}
+{"time":"2025-07-25T18:03:00.286993982Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T18:03:00.291010887Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T18:03:10.414461477Z","level":"ERROR","msg":"unexpected db error: ERROR: invalid input syntax for type timestamp with time zone: \"\" (SQLSTATE 22007)"}
+{"time":"2025-07-25T18:04:08.473477944Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T18:04:08.479956001Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T18:04:58.142583937Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T18:04:58.145087701Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T18:05:05.198463432Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T18:05:05.200757573Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T18:07:21.982401851Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T18:07:21.98516592Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T18:08:07.245309749Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T18:08:07.247850098Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T18:08:11.754493606Z","level":"ERROR","msg":"email already exists"}
+{"time":"2025-07-25T18:09:07.361921281Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-25T18:09:07.3642709Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-25T18:09:12.697517689Z","level":"ERROR","msg":"email already exists"}
+{"time":"2025-07-25T18:09:27.33662186Z","level":"ERROR","msg":"email already exists"}
+{"time":"2025-07-25T18:09:46.79917201Z","level":"ERROR","msg":"email already exists"}
+{"time":"2025-07-25T18:10:01.573166354Z","level":"ERROR","msg":"email already exists"}

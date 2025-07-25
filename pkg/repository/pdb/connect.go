@@ -17,6 +17,9 @@ type Database interface {
 	ConnectPostgres() error
 	PingDB() bool
 	Close()
+	DB() *bun.DB
+	Insert(ctx context.Context, model interface{}) error
+	InsertMany(ctx context.Context, models ...interface{}) error
 }
 
 type postgresConn struct {
@@ -107,4 +110,8 @@ func (p *postgresConn) Close() {
 	if p.bun != nil {
 		p.bun.Close()
 	}
+}
+
+func (p *postgresConn) DB() *bun.DB {
+	return p.bun
 }

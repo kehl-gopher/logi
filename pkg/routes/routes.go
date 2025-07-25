@@ -14,5 +14,6 @@ func Setup(log *utils.Log, conf *config.Config, db pdb.Database, rdb rdb.RedisDB
 	r.Use(gin.Recovery())
 
 	health(r, log, conf, db, rdb)
+	authRoutes(r, log, conf, db, rdb)
 	return r
 }

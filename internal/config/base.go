@@ -1,8 +1,10 @@
 package config
 
 type AppConfig struct {
-	APP_VERSION string
-	APP_ENV     string
+	APP_VERSION      string
+	APP_ENV          string
+	JWT_SECRETKEY    string
+	JWT_DURATIONTIME string
 }
 type PostgresDB struct {
 	DBuser   string
@@ -26,8 +28,10 @@ type Config struct {
 }
 
 type BaseConfig struct {
-	APP_VERSION string `mapstructure:"APP_VERSION"`
-	APP_ENV     string `mapstructure:"APP_ENV"`
+	APP_VERSION      string `mapstructure:"APP_VERSION"`
+	APP_ENV          string `mapstructure:"APP_ENV"`
+	JWT_SECRETKEY    string `mapstructure:"JWT_SECRETKEY"`
+	JWT_DURATIONTIME string `mapstructure:"JWT_DURATIONTIME"`
 
 	DBuser   string `mapstructure:"POSTGRES_USER"`
 	DBName   string `mapstructure:"POSTGRES_DBNAME"`
@@ -44,8 +48,10 @@ type BaseConfig struct {
 func (b *BaseConfig) SetupConfig() *Config {
 	return &Config{
 		APP_CONFIG: AppConfig{
-			APP_VERSION: b.APP_VERSION,
-			APP_ENV:     b.APP_ENV,
+			APP_VERSION:      b.APP_VERSION,
+			APP_ENV:          b.APP_ENV,
+			JWT_SECRETKEY:    b.JWT_SECRETKEY,
+			JWT_DURATIONTIME: b.JWT_DURATIONTIME,
 		},
 		Postgres: PostgresDB{
 			DBuser:   b.DBuser,

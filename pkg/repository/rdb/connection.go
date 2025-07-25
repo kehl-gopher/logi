@@ -3,6 +3,7 @@ package rdb
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/kehl-gopher/logi/internal/config"
 	"github.com/kehl-gopher/logi/internal/utils"
@@ -13,6 +14,10 @@ type RedisDB interface {
 	ConnectRedis(ctx context.Context) error
 	PingCache(ctx context.Context) bool
 	Close()
+	RED() *redis.Client
+
+	Set(ctx context.Context, key string, data interface{}, ttl time.Duration) error
+	Queue(ctx context.Context, key string, data interface{}) error
 }
 
 type redisConn struct {
@@ -55,4 +60,8 @@ func (r *redisConn) Close() {
 	if r.red != nil {
 		r.red.Close()
 	}
+}
+
+func (r *redisConn) RED() *redis.Client {
+	return r.red
 }

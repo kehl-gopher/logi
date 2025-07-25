@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
+	"strings"
 	"time"
 
 	lg "log"
@@ -16,6 +18,8 @@ import (
 )
 
 func main() {
+	var drop bool
+	flag.BoolVar(&drop, "drop", false, "force drop tables on dirty migrations") // not to be used in production
 	log := utils.NewLogger()
 	err := godotenv.Load()
 	if err != nil {
@@ -43,6 +47,12 @@ func main() {
 		return
 	}
 	defer red.Close()
+
+	if drop && strings.ToLower(conf.APP_CONFIG.APP_ENV) == "dev" {
+		utils.Droptables(db.DB())
+		utils.PrintLog(log, "all tables are dropped.", utils.DebugLevel)
+		return
+	}
 
 	r := routes.Setup(log, conf, db, red)
 	lg.Fatal(r.Run(fmt.Sprintf(":%d", 8080)))

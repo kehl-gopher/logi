@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"context"
@@ -8,7 +8,7 @@ import (
 )
 
 // drop tables incase of dirty database during migrations
-func drop_tables(db *bun.DB) {
+func Droptables(db *bun.DB) {
 	var tables []string
 
 	err := db.NewSelect().
@@ -30,8 +30,4 @@ func drop_tables(db *bun.DB) {
 			log.Printf("dropped table: %s", table)
 		}
 	}
-}
-
-func main() {
-
 }
