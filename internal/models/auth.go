@@ -59,6 +59,33 @@ func (a *Auth) CreateUser(pdb pdb.Database, rdb rdb.RedisDB, conf *config.Config
 	return nil
 }
 
+func (a *Auth) GetUser(pdb pdb.Database, rdb rdb.RedisDB, conf *config.Config, log *utils.Log) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	query := `email = ?`
+	password := a.Password
+	err := pdb.SelectSingle(ctx, a, query, a.Email)
+	if err != nil {
+		return err
+	}
+
+	pCheck := utils.CompareHashedPassword(password, a.Password)
+	if !pCheck {
+		return utils.ErrPasswordNotMatch
+	}
+
+	ttl, err := utils.ParseTime(conf.APP_CONFIG.JWT_DURATIONTIME)
+	if err != nil {
+		return err
+	}
+	token, err := insertAccessToken(ctx, rdb, conf.APP_CONFIG.JWT_SECRETKEY, ttl, a.Id)
+	if err != nil {
+		return err
+	}
+	a.Token = *token
+	return nil
+}
+
 func insertAccessToken(ctx context.Context, rdb rdb.RedisDB, secret string, ttl time.Duration, userId string) (*AccessToken, error) {
 	key := fmt.Sprintf("user:%s", userId)
 	token, exp, err := utils.GenerateJWT(userId, secret, ttl)
@@ -77,5 +104,3 @@ func insertAccessToken(ctx context.Context, rdb rdb.RedisDB, secret string, ttl 
 
 	return acc, nil
 }
-
-

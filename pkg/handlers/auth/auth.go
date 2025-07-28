@@ -46,10 +46,6 @@ func (a *AuthHandler) CreateUser(c *gin.Context) {
 
 	statusCode, resp := au.CreateUser(auth.Email, auth.Password)
 
-	if statusCode != http.StatusCreated {
-		c.JSON(statusCode, resp)
-		return
-	}
 	c.JSON(statusCode, resp)
 }
 
@@ -70,4 +66,7 @@ func (a *AuthHandler) SignInUser(c *gin.Context) {
 		return
 	}
 
+	au := sauth.Auth{Db: a.Pdb, Rdb: a.Rdb, Conf: a.Conf, Log: a.Log}
+	statusCode, resp := au.UserLogIn(auth.Email, auth.Password)
+	c.JSON(statusCode, resp)
 }

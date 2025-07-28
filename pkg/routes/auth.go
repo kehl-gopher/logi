@@ -14,5 +14,6 @@ func authRoutes(r *gin.Engine, log *utils.Log, conf *config.Config, db pdb.Datab
 	api := r.Group("/api/v1/auth")
 	{
 		api.POST("/signup", auth.CreateUser)
+		api.POST("/signin", auth.SignInUser)
 	}
 }
