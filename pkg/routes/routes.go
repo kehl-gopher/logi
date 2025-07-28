@@ -6,6 +6,9 @@ import (
 	"github.com/kehl-gopher/logi/internal/utils"
 	"github.com/kehl-gopher/logi/pkg/repository/pdb"
 	"github.com/kehl-gopher/logi/pkg/repository/rdb"
+	swaggerFiles "github.com/swaggo/files"
+
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func Setup(log *utils.Log, conf *config.Config, db pdb.Database, rdb rdb.RedisDB) *gin.Engine {
@@ -15,5 +18,12 @@ func Setup(log *utils.Log, conf *config.Config, db pdb.Database, rdb rdb.RedisDB
 
 	health(r, log, conf, db, rdb)
 	authRoutes(r, log, conf, db, rdb)
+
+	r.StaticFile("/swagger.yml", "./static/swagger.yml")
+	url := ginSwagger.URL("/swagger.yml")
+	r.GET("/api/docs/*any", func(c *gin.Context) {
+		ginSwagger.WrapHandler(swaggerFiles.Handler, url)(c)
+	})
+
 	return r
 }

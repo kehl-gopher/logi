@@ -11,8 +11,8 @@ import (
 
 func authRoutes(r *gin.Engine, log *utils.Log, conf *config.Config, db pdb.Database, rd rdb.RedisDB) {
 	auth := auth.AuthHandler{Log: log, Conf: conf, Pdb: db, Rdb: rd}
-	api := r.Group("/api/v1/signup")
+	api := r.Group("/api/v1/auth")
 	{
-		api.POST("/user", auth.CreateUser)
+		api.POST("/signup", auth.CreateUser)
 	}
 }

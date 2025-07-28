@@ -1,7 +1,7 @@
 package sauth
 
 import (
-	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/kehl-gopher/logi/internal/config"
@@ -27,10 +27,11 @@ func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {
 	err := auth.CreateUser(a.Db, a.Rdb, a.Conf, a.Log)
 
 	if err != nil {
-		if errors.Is(err, utils.ErrorEmailAlreadyExists) {
-			message := "bad error response"
-			return http.StatusBadRequest, utils.ErrorResponse(http.StatusBadRequest, message, err.Error())
-		}
+		// if errors.Is(err, utils.ErrorEmailAlreadyExists) {
+		// 	message := "bad error response"
+		// 	return http.StatusBadRequest, utils.ErrorResponse(http.StatusBadRequest, message, err.Error())
+		// }
+		fmt.Println("=============================")
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
 	return http.StatusCreated, utils.SuccessfulResponse(http.StatusCreated, "user created successfully", auth)

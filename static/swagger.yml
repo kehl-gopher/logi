@@ -1,0 +1,179 @@
+openapi: 3.0.3
+info:
+  title: logi api
+  version: "1.0.0"
+  description: |
+    The Logi API enables seamless door-to-door delivery service integration.
+    It allows users to create and manage delivery requests,
+    assign drivers, and track packages in real-time. With support for dynamic routing, status updates,
+    and efficient coordination between senders, drivers, and recipients, the API ensures reliable delivery operations
+    without requiring the receiver to interact with the app directly
+
+servers:
+- url: http://localhost:8080/api/v1
+
+tags:
+- name: auth
+  description: |
+    Authenticates a user using their email and password, and returns access token with user info
+    for secure session management.
+
+paths:
+  /auth/signup:
+    summary: User Signup
+    post:
+      tags:
+      - auth
+      description: Creates a new user account and returns an access token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupRequest'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignupSuccessResponse'
+        '400':
+          description: Email already exists or bad input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    SignupRequest:
+      type: object
+      required:
+      - email
+      - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: darasimi13122@gmail.com
+        password:
+          type: string
+          format: password
+          example: strongPassword123
+
+    AccessToken:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        expires_at:
+          type: string
+          format: date-time
+          example: 2025-07-30T10:13:30.203802203Z
+
+    SignupSuccessData:
+      type: object
+      properties:
+        id:
+          type: string
+          example: dc0a46cc-8d2b-40d3-bf90-fa7cea9d0b68
+        email:
+          type: string
+          example: darasimi13122@gmail.com
+        created_at:
+          type: string
+          format: date-time
+          example: 2025-07-28T10:13:30.202554Z
+        access_token:
+          $ref: '#/components/schemas/AccessToken'
+
+    SignupSuccessResponse:
+      type: object
+      properties:
+        status_code:
+          type: integer
+          example: 201
+        status:
+          type: string
+          example: Created
+        message:
+          type: string
+          example: user created successfully
+        data:
+          $ref: '#/components/schemas/SignupSuccessData'
+
+    BadRequestResponse:
+      type: object
+      properties:
+        status_code:
+          type: integer
+          example: 400
+        status:
+          type: string
+          example: Bad Request
+        message:
+          type: string
+          example: bad error response
+        error:
+          type: string
+          example: email already exists
+
+    ValidationFieldError:
+      type: object
+      properties:
+        field:
+          type: string
+          example: Email
+        error:
+          type: string
+          example: invalid email address
+
+    ValidationErrorResponse:
+      type: object
+      properties:
+        status_code:
+          type: integer
+          example: 422
+        status:
+          type: string
+          example: Unprocessable Entity
+        message:
+          type: string
+          example: validation error
+        error:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationFieldError'
+
+    InternalServerErrorResponse:
+      type: object
+      properties:
+        status_code:
+          type: integer
+          example: 500
+        status:
+          type: string
+          example: Internal Server Error
+        error:
+          type: string
+          example: server error

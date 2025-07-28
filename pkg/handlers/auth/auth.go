@@ -52,3 +52,22 @@ func (a *AuthHandler) CreateUser(c *gin.Context) {
 	}
 	c.JSON(statusCode, resp)
 }
+
+func (a *AuthHandler) SignInUser(c *gin.Context) {
+	var auth struct {
+		Email    string `json:"email" binding:"required,email"`
+		Password string `json:"password" binding:"required"`
+	}
+	if err := c.ShouldBindJSON(&auth); err != nil {
+		var ve validator.ValidationErrors
+		if errors.As(err, &ve) {
+			resp := utils.ValidationErrorResponse(ve)
+			c.JSON(http.StatusUnprocessableEntity, resp)
+			return
+		}
+		resp := utils.ErrorResponse(http.StatusBadRequest, "bad error response", err)
+		c.JSON(http.StatusBadRequest, resp)
+		return
+	}
+
+}
