@@ -5,11 +5,13 @@ import (
 	"net/http"
 
 	"github.com/kehl-gopher/logi/internal/config"
+	"github.com/kehl-gopher/logi/internal/mailer"
 	"github.com/kehl-gopher/logi/internal/models"
 	"github.com/kehl-gopher/logi/internal/utils"
 	"github.com/kehl-gopher/logi/pkg/repository/pdb"
 	"github.com/kehl-gopher/logi/pkg/repository/rabbitmq"
 	"github.com/kehl-gopher/logi/pkg/repository/rdb"
+	semail "github.com/kehl-gopher/logi/service/email"
 )
 
 type Auth struct {
@@ -33,6 +35,18 @@ func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {
 			message := "bad error response"
 			return http.StatusBadRequest, utils.ErrorResponse(http.StatusBadRequest, message, err.Error())
 		}
+		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
+	}
+
+	e := mailer.SendWelcomeEmail{Email: auth.Email}
+	body, err := utils.MarshalJSON(e)
+	if err != nil {
+		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
+	}
+	eVal := mailer.SendWelcomeemail.GetValue()
+	err = semail.PublishToEmailQUeue(a.RM, "", eVal, body)
+
+	if err != nil {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
 	return http.StatusCreated, utils.SuccessfulResponse(http.StatusCreated, "user created successfully", auth)

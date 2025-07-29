@@ -40,15 +40,16 @@ func (rq *RabbitMQ) updateChannel(chh *amqp091.Channel) {
 	rq.ch = chh
 }
 
-func (rq *RabbitMQ) PubslishQueue(ctx context.Context, exchange, routingKey, body string, mandatory, immediate bool) error {
+func (rq *RabbitMQ) PublishQueue(ctx context.Context, exchange, routingKey string, body []byte) error {
 	err := rq.ch.PublishWithContext(ctx,
 		exchange,
 		routingKey,
-		mandatory,
-		immediate,
+		false,
+		false,
 		amqp091.Publishing{
-			ContentType: "application/json",
-			Body:        []byte(body),
+			ContentType:  "application/json",
+			Body:         body,
+			DeliveryMode: amqp091.Persistent,
 		},
 	)
 
@@ -75,4 +76,35 @@ func (rq *RabbitMQ) Close() error {
 	}
 
 	return nil
+}
+
+func (rq *RabbitMQ) DeclareQueue(ctx context.Context, name string, routingKey string, durable bool, body []byte) error {
+	q, err := rq.ch.QueueDeclare(routingKey, durable, false, false, false, nil)
+	if err != nil {
+		utils.PrintLog(rq.log, fmt.Sprintf("failed to declare queue: %v", err), utils.ErrorLevel)
+		return err
+	}
+	err = rq.PublishQueue(ctx, name, q.Name, body)
+	if err != nil {
+		return err
+	}
+	return err
+}
+
+func (rq *RabbitMQ) ConsumeQueue(ctx context.Context, name string, routingKey string, durable bool) (<-chan amqp091.Delivery, error) {
+	q, err := rq.ch.QueueDeclare(routingKey, durable, false, false, false, nil)
+
+	if err != nil {
+		return nil, err
+	}
+
+	dev, err := rq.ch.Consume(q.Name, "", false, false, false, false, nil)
+	if err != nil {
+		return nil, err
+	}
+	return dev, nil
+}
+
+func (rq *RabbitMQ) RQChan() *amqp091.Channel {
+	return rq.ch
 }
