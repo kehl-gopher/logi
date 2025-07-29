@@ -5,15 +5,6 @@ services:
       dockerfile: infra/Dockerfile
       target: dev
     container_name: logi-app-dev
-    environment:
-      DB_USER: ${POSTGRES_USER}
-      DB_PASS: ${POSTGRES_PASSWORD}
-      DB_NAME: ${POSTGRES_DBNAME}
-      DB_PORT: ${POSTGRES_PORT}
-      DB_HOST: ${POSTGRES_HOST}
-      RED_PORT: ${RED_PORT}
-      RED_ADDR: ${RED_ADDR}
-      APP_ENV: ${APP_ENV}
     volumes:
       - type: bind
         source: ../
@@ -23,9 +14,9 @@ services:
     depends_on:
       - postgres
       - redis
+      - rabbitmq
     ports:
       - "8080:8080"
-  
 
   postgres:
     image: postgres:16-alpine
@@ -49,6 +40,17 @@ services:
       - "6379:6379"
     networks:
       - logi-network
+  rabbitmq:
+    image: rabbitmq:4.1-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - logi-network
+
 
 volumes:
   pgdata:

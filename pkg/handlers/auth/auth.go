@@ -9,8 +9,9 @@ import (
 	"github.com/kehl-gopher/logi/internal/config"
 	"github.com/kehl-gopher/logi/internal/utils"
 	"github.com/kehl-gopher/logi/pkg/repository/pdb"
+	"github.com/kehl-gopher/logi/pkg/repository/rabbitmq"
 	"github.com/kehl-gopher/logi/pkg/repository/rdb"
-	sauth "github.com/kehl-gopher/logi/pkg/service/auth"
+	sauth "github.com/kehl-gopher/logi/service/auth"
 )
 
 type AuthHandler struct {
@@ -18,6 +19,7 @@ type AuthHandler struct {
 	Log  *utils.Log
 	Pdb  pdb.Database
 	Rdb  rdb.RedisDB
+	RM   *rabbitmq.RabbitMQ
 }
 
 func (a *AuthHandler) CreateUser(c *gin.Context) {
@@ -42,6 +44,7 @@ func (a *AuthHandler) CreateUser(c *gin.Context) {
 		Rdb:  a.Rdb,
 		Conf: a.Conf,
 		Log:  a.Log,
+		RM:   a.RM,
 	}
 
 	statusCode, resp := au.CreateUser(auth.Email, auth.Password)

@@ -8,6 +8,7 @@ import (
 	"github.com/kehl-gopher/logi/internal/models"
 	"github.com/kehl-gopher/logi/internal/utils"
 	"github.com/kehl-gopher/logi/pkg/repository/pdb"
+	"github.com/kehl-gopher/logi/pkg/repository/rabbitmq"
 	"github.com/kehl-gopher/logi/pkg/repository/rdb"
 )
 
@@ -16,6 +17,7 @@ type Auth struct {
 	Rdb  rdb.RedisDB
 	Conf *config.Config
 	Log  *utils.Log
+	RM   *rabbitmq.RabbitMQ
 }
 
 func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {

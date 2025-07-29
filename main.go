@@ -13,6 +13,7 @@ import (
 	"github.com/kehl-gopher/logi/internal/config"
 	"github.com/kehl-gopher/logi/internal/utils"
 	"github.com/kehl-gopher/logi/pkg/repository/pdb"
+	"github.com/kehl-gopher/logi/pkg/repository/rabbitmq"
 	"github.com/kehl-gopher/logi/pkg/repository/rdb"
 	"github.com/kehl-gopher/logi/pkg/routes"
 )
@@ -53,7 +54,10 @@ func main() {
 		utils.PrintLog(log, "all tables are dropped.", utils.DebugLevel)
 		return
 	}
+	// rabbitmq connection
+	rq := rabbitmq.NewMQManager(&conf.RabbitMQ, log)
+	defer rq.Close()
 
-	r := routes.Setup(log, conf, db, red)
+	r := routes.Setup(log, conf, db, red, rq)
 	lg.Fatal(r.Run(fmt.Sprintf(":%d", 8080)))
 }
