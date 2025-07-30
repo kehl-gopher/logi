@@ -1,14 +1,10 @@
 package mailer
 
 import (
-	"bytes"
 	"embed"
 	"errors"
 	"fmt"
-	"html/template"
-	"log"
 	"net"
-	"path/filepath"
 	"strings"
 	"time"
 
@@ -46,33 +42,35 @@ func NewEmail(to string, subject string, att string, attName string, data map[st
 	return Email{Recipient: to, Subject: subject, Att: att, AttName: attName, data: data}
 }
 
-func (m Mailer) email(temp string, e Email) error {
-	var body bytes.Buffer
+func (m Mailer) email() error {
+	// var body bytes.Buffer
 
-	e.data = addDataTemplate(e.data, m.Conf)
-	tmpl, err := template.New("email").ParseFS(templateFS, filepath.Join("templates", temp))
-	if err != nil {
-		log.Println(err.Error())
-		return err
-	}
-	err = tmpl.Execute(&body, e.data)
-	if err != nil {
-		return err
-	}
+	// e.data = addDataTemplate(e.data, m.Conf)
+	// tmpl, err := template.New("email").ParseFS(templateFS, filepath.Join("templates", temp))
+	// if err != nil {
+	// 	log.Println(err.Error())
+	// 	return err
+	// }
+	// err = tmpl.Execute(&body, e.data)
+	// if err != nil {
+	// 	return err
+	// }
 
-	if err := m.sendEmail(body.String(), e); err != nil {
+	// if err := m.sendEmail(body.String(), e); err != nil {
+	// 	return err
+	// }
+	// return nil
 
-	}
 	return nil
 }
 
-func (m Mailer) sendEmail(body string, e Email) error {
+func (m Mailer) sendEmail(body string, subject string, e EmailJOB) error {
 	msg := mail.NewMessage()
-	msg.SetHeader("Subject", e.Subject)
-	msg.SetHeader("From", m.sender)
-	msg.SetHeader("Content-Type", "text/html; charset=UTF-8")
-	msg.SetHeader("To", e.Recipient)
+	msg.SetHeader("Subject", subject)
+	msg.SetAddressHeader("From", m.sender, "Logi Team") // Add name
+	// msg.SetHeader("Content-Type", "text/html; charset=UTF-8")
 	msg.SetBody("text/html", body)
+	msg.SetHeader("To", e.To)
 
 	const maxRetries = 3
 	var lastErr error
@@ -95,24 +93,33 @@ func (m Mailer) sendEmail(body string, e Email) error {
 
 		return err
 	}
-	defer msg.Reset()
 
-	return lastErr
+	if lastErr != nil {
+		return lastErr
+	}
+	defer msg.Reset()
+	return nil
 }
 
-func SendWelcomeEmails(recipient string, conf *config.AppConfig, lg *utils.Log) error {
+func (e *EmailJOB) SendWelcomeEmails(conf *config.AppConfig, lg *utils.Log) error {
 	port, err := utils.PortResolver(conf.SMTP_PORT)
 	if err != nil {
 		return err
 	}
 
 	m := NewMailer(conf.SMTP_HOST, port, conf.SMTP_USERNAME, conf.SMTP_PASSWORD, conf.SMTP_USERNAME, conf, lg)
-	subject := "Thanks for joining logi 🎉"
-	e := NewEmail(recipient, subject, "", "", nil)
-	err = m.email("welcome_email.html", e)
+
+	body, subject, err := e.HandleEmailJob()
+
 	if err != nil {
 		return err
 	}
+
+	if err := m.sendEmail(body, subject, *e); err != nil {
+		utils.PrintLog(lg, fmt.Sprintf("failed to send email: %v", err), utils.ErrorLevel)
+		return err
+	}
+
 	return nil
 }
 

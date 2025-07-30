@@ -8,8 +8,10 @@ import (
 	"time"
 
 	"github.com/kehl-gopher/logi/internal/config"
+	"github.com/kehl-gopher/logi/internal/mailer"
 	"github.com/kehl-gopher/logi/internal/utils"
 	"github.com/kehl-gopher/logi/pkg/repository/rabbitmq"
+	"github.com/rabbitmq/amqp091-go"
 )
 
 type ConsumerManager struct {
@@ -99,7 +101,13 @@ func (c *ConsumerManager) runProcessor(p QueueProcessor) error {
 				if !ok {
 					utils.PrintLog(c.log, fmt.Sprintf("Queue %s worker %d: channel closed", p.name, id), utils.WarnLevel)
 				}
-				fmt.Println(dev)
+
+				if err := processMessage(dev, c.conf, c.log); err != nil {
+					utils.PrintLog(c.log, fmt.Sprintf("Worker %d failed to process message: %v", id, err), utils.ErrorLevel)
+					dev.Nack(false, true)
+				} else {
+					dev.Ack(false)
+				}
 			case <-c.ctx.Done():
 				return
 			}
@@ -132,9 +140,25 @@ func (c *ConsumerManager) Stop() {
 	fmt.Println("Consumer manager stopped")
 }
 func (c *ConsumerManager) Start() {
-
 	for _, p := range c.queueProcessor {
 		c.wg.Add(1)
 		go c.processWorker(p)
 	}
+	fmt.Printf("Started %d queue processors\n", len(c.queueProcessor))
+}
+
+func processMessage(dev amqp091.Delivery, conf *config.AppConfig, lg *utils.Log) error {
+	key := dev.RoutingKey
+	var ej mailer.EmailJOB
+	switch key {
+	case "email.welcome":
+		err := utils.UnmarshalJSON(dev.Body, &ej)
+		if err != nil {
+			return err
+		}
+		if err := ej.SendWelcomeEmails(conf, lg); err != nil {
+			return err
+		}
+	}
+	return nil
 }

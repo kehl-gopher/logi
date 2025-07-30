@@ -11,6 +11,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/kehl-gopher/logi/internal/config"
+	"github.com/kehl-gopher/logi/internal/jobs"
 	"github.com/kehl-gopher/logi/internal/utils"
 	"github.com/kehl-gopher/logi/pkg/repository/pdb"
 	"github.com/kehl-gopher/logi/pkg/repository/rabbitmq"
@@ -58,6 +59,15 @@ func main() {
 	rq := rabbitmq.NewMQManager(&conf.RabbitMQ, log)
 	rq.EnsureConnection()
 	defer rq.Close()
+
+	// start consumer manager
+
+	p1 := jobs.NewQueueProcessor(jobs.EMAIL_QUEUE, jobs.EMAIL_EXCHANGE, "email.#", true, rq)
+	cons := jobs.NewConsumerManager(log, conf)
+	cons.AddProcessor(p1)
+
+	cons.Start()
+	defer cons.Stop()
 
 	r := routes.Setup(log, conf, db, red, rq)
 	lg.Fatal(r.Run(fmt.Sprintf(":%d", 8080)))

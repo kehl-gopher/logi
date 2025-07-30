@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/kehl-gopher/logi/internal/config"
+	"github.com/kehl-gopher/logi/internal/jobs"
 	"github.com/kehl-gopher/logi/internal/mailer"
 	"github.com/kehl-gopher/logi/internal/models"
 	"github.com/kehl-gopher/logi/internal/utils"
@@ -46,8 +47,7 @@ func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {
 	if err != nil {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
-	eval := mailer.WelcomeEmail.String()
-	err = semail.PublishToEmailQUeue(a.RM, eval, "email.welcome", "email_exchange", body, a.Log, &a.Conf.APP_CONFIG)
+	err = semail.PublishToEmailQUeue(a.RM, jobs.EMAIL_QUEUE, "email.welcome", "email_exchange", body, a.Log, &a.Conf.APP_CONFIG)
 
 	if err != nil {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)

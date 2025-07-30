@@ -6,6 +6,16 @@ import (
 	"github.com/kehl-gopher/logi/pkg/repository/rabbitmq"
 )
 
+// exchange
+const (
+	EMAIL_EXCHANGE = "email-exchange"
+)
+
+// queues
+const (
+	EMAIL_QUEUE = "email-queue"
+)
+
 type QueueProcessor struct {
 	name       string
 	exchange   string

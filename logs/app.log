@@ -1297,3 +1297,415 @@
 {"time":"2025-07-30T17:02:54.96609201Z","level":"INFO","msg":"Database connection successful"}
 {"time":"2025-07-30T17:02:54.969911439Z","level":"INFO","msg":"redis connection successful"}
 {"time":"2025-07-30T17:02:54.976427447Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T18:15:13.000722123Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T18:15:13.006036645Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T18:15:13.023699785Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T18:46:23.168615832Z","level":"WARN","msg":"Queue email-queue worker 1: channel closed"}
+{"time":"2025-07-30T18:46:23.169817404Z","level":"WARN","msg":"Queue email-queue worker 6: channel closed"}
+{"time":"2025-07-30T18:46:23.184930007Z","level":"WARN","msg":"Queue email-queue worker 7: channel closed"}
+{"time":"2025-07-30T18:46:23.18679706Z","level":"WARN","msg":"Queue email-queue worker 4: channel closed"}
+{"time":"2025-07-30T18:46:23.192285979Z","level":"WARN","msg":"Queue email-queue worker 5: channel closed"}
+{"time":"2025-07-30T18:46:23.197281345Z","level":"WARN","msg":"Queue email-queue worker 2: channel closed"}
+{"time":"2025-07-30T18:46:23.198143978Z","level":"WARN","msg":"Queue email-queue worker 3: channel closed"}
+{"time":"2025-07-30T18:46:23.199124387Z","level":"ERROR","msg":"RabbitMQ channel closed: Exception (406) Reason: \"PRECONDITION_FAILED - delivery acknowledgement on channel 1 timed out. Timeout value used: 1800000 ms. This timeout value can be configured, see consumers doc guide to learn more\""}
+{"time":"2025-07-30T18:46:23.277186264Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T19:08:30.94271724Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T19:08:30.948931913Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T19:08:30.955406419Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:21:12.415254886Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:21:12.452237538Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:21:12.680033325Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:21:13.485945017Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:21:13.497733607Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:21:13.53741439Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:21:17.345529108Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:21:17.350562768Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:21:17.361084163Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:21:52.118048125Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:21:52.122010017Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:21:52.128039265Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:21:56.8436979Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:21:56.847111737Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:21:56.854871668Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:21:58.385720433Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:21:58.391064024Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:21:58.407863679Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:22:05.382737438Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:22:05.385825157Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:22:05.391264705Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:22:20.072555227Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:22:20.076063195Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:22:20.084543841Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:22:23.340834851Z","level":"ERROR","msg":"email already exists"}
+{"time":"2025-07-30T20:22:40.761968566Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:22:40.768823816Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:22:40.776995998Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:22:48.504141919Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:22:48.510014402Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:22:48.519824305Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:22:51.041816789Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:22:51.046535066Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:22:51.053628988Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:22:54.116292181Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:22:54.120063786Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:22:54.127151935Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:22:59.053606085Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:22:59.057411943Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:22:59.063562359Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:23:03.269806517Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:23:03.273267034Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:23:03.281106971Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:23:11.554708369Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:23:11.558029785Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:23:11.564444988Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:23:21.019636442Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:23:21.023844674Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:23:21.032555364Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:23:23.220603255Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:23:23.22421512Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:23:23.23336652Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:23:33.251819208Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:23:33.256527827Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:23:33.27145108Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:23:35.021246702Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:23:35.029990362Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:23:35.039106882Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:23:36.433029279Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:23:36.437023298Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:23:36.445051154Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:27:28.036564736Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:27:28.040282136Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:27:28.046290555Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:27:29.381884375Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:27:29.38658301Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:27:29.413427646Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:27:38.164476308Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:27:38.167211078Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:27:38.176950482Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:28:39.428457652Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:28:39.440119028Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:28:39.450390791Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:28:44.493029886Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:28:44.497868102Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:28:44.507010265Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:28:46.685621726Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:28:46.689884837Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:28:46.700087453Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:28:53.864467095Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:28:53.868732846Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:28:53.875186367Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:28:59.686037752Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:28:59.689701806Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:28:59.696333866Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:49:27.633710457Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:49:27.638661611Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:49:27.647312415Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:49:28.095330386Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:49:28.099695629Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:49:28.109647473Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:49:47.845956982Z","level":"ERROR","msg":"Worker 8 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:49:47.852041313Z","level":"ERROR","msg":"Worker 2 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:49:47.854200074Z","level":"ERROR","msg":"Worker 3 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:49:47.859893872Z","level":"ERROR","msg":"Worker 4 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:49:47.861006847Z","level":"ERROR","msg":"Worker 5 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:49:47.864625383Z","level":"ERROR","msg":"Worker 6 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:49:47.865608117Z","level":"ERROR","msg":"Worker 7 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:49:47.870343867Z","level":"ERROR","msg":"Worker 1 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:05.156410605Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:51:05.160278514Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:51:05.168374391Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:51:05.184624751Z","level":"ERROR","msg":"Worker 8 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:05.185670933Z","level":"ERROR","msg":"Worker 3 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:05.187795241Z","level":"ERROR","msg":"Worker 1 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:05.188562297Z","level":"ERROR","msg":"Worker 2 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:05.191187781Z","level":"ERROR","msg":"Worker 5 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:05.193936044Z","level":"ERROR","msg":"Worker 4 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:05.195202799Z","level":"ERROR","msg":"Worker 6 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:05.19948966Z","level":"ERROR","msg":"Worker 7 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:07.348947222Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:51:07.354555067Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:51:07.363604224Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:51:07.379199946Z","level":"ERROR","msg":"Worker 8 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:07.380234957Z","level":"ERROR","msg":"Worker 3 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:07.381448762Z","level":"ERROR","msg":"Worker 1 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:07.384340361Z","level":"ERROR","msg":"Worker 2 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:07.386181988Z","level":"ERROR","msg":"Worker 5 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:07.390808235Z","level":"ERROR","msg":"Worker 4 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:07.393280775Z","level":"ERROR","msg":"Worker 6 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:07.395869744Z","level":"ERROR","msg":"Worker 7 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:08.430196506Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:51:08.434611444Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:51:08.441198382Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:51:08.451840221Z","level":"ERROR","msg":"Worker 8 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:08.452676849Z","level":"ERROR","msg":"Worker 4 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:08.453709423Z","level":"ERROR","msg":"Worker 1 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:08.455584493Z","level":"ERROR","msg":"Worker 2 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:08.456877709Z","level":"ERROR","msg":"Worker 3 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:08.458625567Z","level":"ERROR","msg":"Worker 6 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:08.462772837Z","level":"ERROR","msg":"Worker 5 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:08.464189229Z","level":"ERROR","msg":"Worker 7 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:16.040186148Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:51:16.042683Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:51:16.051469446Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:51:16.056955886Z","level":"ERROR","msg":"Worker 8 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:16.064218177Z","level":"ERROR","msg":"Worker 3 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:16.066219151Z","level":"ERROR","msg":"Worker 1 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:16.069578035Z","level":"ERROR","msg":"Worker 2 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:16.070458852Z","level":"ERROR","msg":"Worker 5 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:16.072525664Z","level":"ERROR","msg":"Worker 4 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:16.073547257Z","level":"ERROR","msg":"Worker 6 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:16.076340365Z","level":"ERROR","msg":"Worker 7 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:19.805063699Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:51:19.808243492Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:51:19.819676492Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:51:19.837892737Z","level":"ERROR","msg":"Worker 8 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:19.840018749Z","level":"ERROR","msg":"Worker 3 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:19.841211919Z","level":"ERROR","msg":"Worker 1 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:19.844336709Z","level":"ERROR","msg":"Worker 2 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:19.849316712Z","level":"ERROR","msg":"Worker 5 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:19.85239913Z","level":"ERROR","msg":"Worker 4 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:19.854270258Z","level":"ERROR","msg":"Worker 6 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:19.857984805Z","level":"ERROR","msg":"Worker 7 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:20.522521569Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:51:20.52751596Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:51:20.536116323Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:51:20.550894149Z","level":"ERROR","msg":"Worker 8 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:20.553295208Z","level":"ERROR","msg":"Worker 4 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:20.557826816Z","level":"ERROR","msg":"Worker 1 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:20.560321994Z","level":"ERROR","msg":"Worker 2 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:20.564525867Z","level":"ERROR","msg":"Worker 3 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:20.56586418Z","level":"ERROR","msg":"Worker 6 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:20.567253688Z","level":"ERROR","msg":"Worker 5 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:20.568847977Z","level":"ERROR","msg":"Worker 7 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:24.992628901Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:51:24.997617362Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:51:25.010734433Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:51:25.044215309Z","level":"ERROR","msg":"Worker 8 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:25.056588091Z","level":"ERROR","msg":"Worker 1 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:25.058696553Z","level":"ERROR","msg":"Worker 2 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:25.061324022Z","level":"ERROR","msg":"Worker 3 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:25.066579625Z","level":"ERROR","msg":"Worker 4 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:25.06895533Z","level":"ERROR","msg":"Worker 5 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:25.07225396Z","level":"ERROR","msg":"Worker 6 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:25.075164447Z","level":"ERROR","msg":"Worker 7 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:58.217047237Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:51:58.22241959Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:51:58.255666415Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:51:58.286503799Z","level":"ERROR","msg":"Worker 1 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:58.287569175Z","level":"ERROR","msg":"Worker 8 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:58.288540855Z","level":"ERROR","msg":"Worker 2 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:58.294560913Z","level":"ERROR","msg":"Worker 3 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:58.301656341Z","level":"ERROR","msg":"Worker 4 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:58.305232684Z","level":"ERROR","msg":"Worker 5 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:58.30654993Z","level":"ERROR","msg":"Worker 6 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:51:58.308574747Z","level":"ERROR","msg":"Worker 7 failed to process message: invalid port provided value provided"}
+{"time":"2025-07-30T20:52:45.35424029Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:52:45.35985015Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:52:45.363375259Z","level":"WARN","msg":"RabbitMQ connection attempt 0/5 failed: dial tcp 172.18.0.2:5672: connect: connection refused"}
+{"time":"2025-07-30T20:52:45.364968336Z","level":"INFO","msg":"Retrying in 1s..."}
+{"time":"2025-07-30T20:52:46.369574624Z","level":"WARN","msg":"RabbitMQ connection attempt 1/5 failed: dial tcp 172.18.0.2:5672: connect: connection refused"}
+{"time":"2025-07-30T20:52:46.369844995Z","level":"INFO","msg":"Retrying in 1.654571859s..."}
+{"time":"2025-07-30T20:52:48.028600651Z","level":"WARN","msg":"RabbitMQ connection attempt 2/5 failed: dial tcp 172.18.0.2:5672: connect: connection refused"}
+{"time":"2025-07-30T20:52:48.030405827Z","level":"INFO","msg":"Retrying in 3.045927741s..."}
+{"time":"2025-07-30T20:52:51.140281207Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:54:02.153803452Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:54:02.156958085Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:54:02.164924972Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:54:16.827584506Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:54:16.831908917Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:54:16.838438535Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:54:26.483698384Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:54:26.488685465Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:54:26.498705899Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:54:32.186050341Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:54:32.191157837Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:54:32.200822152Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:54:50.580518353Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:54:50.584569589Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:54:50.593027143Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:54:52.647829891Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:54:52.651794642Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:54:52.663768237Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:54:54.399617253Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:54:54.40357964Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:54:54.410760575Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:54:57.42391917Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:54:57.430363953Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:54:57.444785356Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:54:58.840088135Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:54:58.843853769Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:54:58.852430214Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:55:19.142913699Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:55:19.151387184Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:55:19.164923531Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:55:22.233264053Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:55:22.236272158Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:55:22.244812501Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:55:29.440625198Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:55:29.444372378Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:55:29.452550495Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:55:45.990711609Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:55:45.994512465Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:55:46.000263544Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:55:54.119768628Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:55:54.125342518Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:55:54.133184903Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:56:06.675975443Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:56:06.680087393Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:56:06.687798215Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:56:15.710633603Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:56:15.715630843Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:56:15.727075291Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:56:21.347994406Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:56:21.351480669Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:56:21.357675747Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:56:35.528844027Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:56:35.534423554Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:56:35.548477894Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:56:35.55323388Z","level":"ERROR","msg":"Worker 8 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:35.553928736Z","level":"ERROR","msg":"Worker 3 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:35.555348989Z","level":"ERROR","msg":"Worker 2 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:35.556473917Z","level":"ERROR","msg":"Worker 1 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:35.557676817Z","level":"ERROR","msg":"Worker 4 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:35.558100795Z","level":"ERROR","msg":"Worker 5 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:35.559571249Z","level":"ERROR","msg":"Worker 7 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:35.559964646Z","level":"ERROR","msg":"Worker 6 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:42.060177262Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:56:42.065156804Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:56:42.074163311Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:56:42.089078263Z","level":"ERROR","msg":"Worker 8 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:42.090581794Z","level":"ERROR","msg":"Worker 4 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:42.091789614Z","level":"ERROR","msg":"Worker 5 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:42.093185631Z","level":"ERROR","msg":"Worker 6 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:42.093721485Z","level":"ERROR","msg":"Worker 2 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:42.094822831Z","level":"ERROR","msg":"Worker 3 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:42.101047951Z","level":"ERROR","msg":"Worker 1 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:56:42.102979219Z","level":"ERROR","msg":"Worker 7 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:57:00.681653362Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:57:00.686856481Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:57:00.693653137Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:57:00.715365215Z","level":"ERROR","msg":"Worker 8 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:57:00.715670849Z","level":"ERROR","msg":"Worker 1 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:57:00.716825307Z","level":"ERROR","msg":"Worker 4 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:57:00.719016746Z","level":"ERROR","msg":"Worker 2 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:57:00.722675063Z","level":"ERROR","msg":"Worker 3 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:57:00.723794852Z","level":"ERROR","msg":"Worker 6 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:57:00.728561244Z","level":"ERROR","msg":"Worker 5 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:57:00.729252398Z","level":"ERROR","msg":"Worker 7 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:36.745761235Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:58:36.770534456Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:58:36.806875066Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:58:36.850525648Z","level":"ERROR","msg":"Worker 8 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:36.851843781Z","level":"ERROR","msg":"Worker 1 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:36.864158222Z","level":"ERROR","msg":"Worker 4 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:36.869382178Z","level":"ERROR","msg":"Worker 3 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:36.8750168Z","level":"ERROR","msg":"Worker 2 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:36.882825408Z","level":"ERROR","msg":"Worker 5 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:36.902611195Z","level":"ERROR","msg":"Worker 6 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:36.905195735Z","level":"ERROR","msg":"Worker 7 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:41.039275183Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:58:41.04273817Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:58:41.049969666Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:58:41.064245258Z","level":"ERROR","msg":"Worker 8 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:41.069749949Z","level":"ERROR","msg":"Worker 1 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:41.07068324Z","level":"ERROR","msg":"Worker 3 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:41.07158282Z","level":"ERROR","msg":"Worker 2 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:41.0725601Z","level":"ERROR","msg":"Worker 5 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:41.073291475Z","level":"ERROR","msg":"Worker 6 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:41.074153681Z","level":"ERROR","msg":"Worker 4 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:41.074855055Z","level":"ERROR","msg":"Worker 7 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:51.087953839Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:58:51.092651656Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:58:51.099553129Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:58:51.116827193Z","level":"ERROR","msg":"Worker 1 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:51.117438078Z","level":"ERROR","msg":"Worker 8 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:51.118130503Z","level":"ERROR","msg":"Worker 2 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:51.121248577Z","level":"ERROR","msg":"Worker 3 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:51.121685249Z","level":"ERROR","msg":"Worker 4 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:51.12332913Z","level":"ERROR","msg":"Worker 5 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:51.124704682Z","level":"ERROR","msg":"Worker 7 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:58:51.124909957Z","level":"ERROR","msg":"Worker 6 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:59:26.035248909Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T20:59:26.039488694Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T20:59:26.047048377Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T20:59:26.058269787Z","level":"ERROR","msg":"Worker 1 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:59:26.058866164Z","level":"ERROR","msg":"Worker 8 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:59:26.060580016Z","level":"ERROR","msg":"Worker 3 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:59:26.061990843Z","level":"ERROR","msg":"Worker 2 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:59:26.06347305Z","level":"ERROR","msg":"Worker 4 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:59:26.064729352Z","level":"ERROR","msg":"Worker 5 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:59:26.066592036Z","level":"ERROR","msg":"Worker 7 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T20:59:26.067133314Z","level":"ERROR","msg":"Worker 6 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:11.539672868Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:01:11.544496909Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:01:11.555955567Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:01:11.572602116Z","level":"ERROR","msg":"Worker 8 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:11.572929892Z","level":"ERROR","msg":"Worker 1 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:11.577323415Z","level":"ERROR","msg":"Worker 4 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:11.581532868Z","level":"ERROR","msg":"Worker 3 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:11.582626566Z","level":"ERROR","msg":"Worker 2 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:11.584635499Z","level":"ERROR","msg":"Worker 6 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:11.588386773Z","level":"ERROR","msg":"Worker 7 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:11.588995532Z","level":"ERROR","msg":"Worker 5 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:13.525969849Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:01:13.532627326Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:01:13.539574105Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:01:13.558674571Z","level":"ERROR","msg":"Worker 8 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:13.559021064Z","level":"ERROR","msg":"Worker 3 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:13.561923142Z","level":"ERROR","msg":"Worker 1 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:13.563062605Z","level":"ERROR","msg":"Worker 5 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:13.563872182Z","level":"ERROR","msg":"Worker 2 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:13.565493711Z","level":"ERROR","msg":"Worker 4 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:13.566000005Z","level":"ERROR","msg":"Worker 6 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:13.569237133Z","level":"ERROR","msg":"Worker 7 failed to process message: template: \"email\" is an incomplete or empty template"}
+{"time":"2025-07-30T21:01:27.490109295Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:01:27.496879645Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:01:27.508333192Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:02:53.707515276Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:02:53.711305933Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:02:53.712243957Z","level":"WARN","msg":"RabbitMQ connection attempt 0/5 failed: dial tcp 172.18.0.2:5672: connect: connection refused"}
+{"time":"2025-07-30T21:02:53.713372702Z","level":"INFO","msg":"Retrying in 1s..."}
+{"time":"2025-07-30T21:02:54.7159302Z","level":"WARN","msg":"RabbitMQ connection attempt 1/5 failed: dial tcp 172.18.0.2:5672: connect: connection refused"}
+{"time":"2025-07-30T21:02:54.716149134Z","level":"INFO","msg":"Retrying in 1.506844155s..."}
+{"time":"2025-07-30T21:02:56.224951206Z","level":"WARN","msg":"RabbitMQ connection attempt 2/5 failed: dial tcp 172.18.0.2:5672: connect: connection refused"}
+{"time":"2025-07-30T21:02:56.225186255Z","level":"INFO","msg":"Retrying in 2.763446198s..."}
+{"time":"2025-07-30T21:02:59.050483228Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:03:08.016475153Z","level":"ERROR","msg":"email already exists"}
+{"time":"2025-07-30T21:07:39.056449723Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:07:39.05984902Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:07:39.065969232Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:07:41.963394329Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:07:41.967109032Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:07:41.9747788Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:07:46.639055327Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:07:46.643104116Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:07:46.651847305Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:18:09.553894814Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:18:09.581042408Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:18:09.583082825Z","level":"WARN","msg":"RabbitMQ connection attempt 0/5 failed: dial tcp 172.18.0.3:5672: connect: connection refused"}
+{"time":"2025-07-30T21:18:09.583602639Z","level":"INFO","msg":"Retrying in 1s..."}
+{"time":"2025-07-30T21:18:10.58758114Z","level":"WARN","msg":"RabbitMQ connection attempt 1/5 failed: dial tcp 172.18.0.3:5672: connect: connection refused"}
+{"time":"2025-07-30T21:18:10.588027117Z","level":"INFO","msg":"Retrying in 1.656290749s..."}
+{"time":"2025-07-30T21:18:12.257838247Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:18:52.520155351Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:18:52.525337516Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:18:52.531451458Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:19:23.800414966Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:19:23.805610737Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:19:23.812841665Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:19:28.385631819Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:19:28.39048523Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:19:28.399974234Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:19:32.577084052Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:19:32.58079165Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:19:32.58864507Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:19:38.876607345Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:19:38.880158134Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:19:38.890349865Z","level":"DEBUG","msg":"RabbitMQ connection successful"}
+{"time":"2025-07-30T21:22:58.384136116Z","level":"INFO","msg":"Database connection successful"}
+{"time":"2025-07-30T21:22:58.388996959Z","level":"INFO","msg":"redis connection successful"}
+{"time":"2025-07-30T21:22:58.393600087Z","level":"WARN","msg":"RabbitMQ connection attempt 0/5 failed: dial tcp 172.18.0.2:5672: connect: connection refused"}
+{"time":"2025-07-30T21:22:58.395796462Z","level":"INFO","msg":"Retrying in 1s..."}
+{"time":"2025-07-30T21:22:59.401306894Z","level":"WARN","msg":"RabbitMQ connection attempt 1/5 failed: dial tcp 172.18.0.2:5672: connect: connection refused"}
+{"time":"2025-07-30T21:22:59.401600716Z","level":"INFO","msg":"Retrying in 1.607359285s..."}
+{"time":"2025-07-30T21:23:01.033282629Z","level":"DEBUG","msg":"RabbitMQ connection successful"}

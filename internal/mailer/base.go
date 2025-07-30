@@ -3,6 +3,7 @@ package mailer
 import (
 	"bytes"
 	"fmt"
+
 	"html/template"
 
 	"github.com/kehl-gopher/logi/internal/config"
@@ -10,24 +11,11 @@ import (
 
 type EmailType string
 
-var (
-	VerificationEmail   EmailType
-	WelcomeEmail        EmailType
-	ForgotPasswordEmail EmailType
+const (
+	VerificationEmail   EmailType = "send-verification-email"
+	WelcomeEmail        EmailType = "send-welcome-email"
+	ForgotPasswordEmail EmailType = "send-forgot-password-mail"
 )
-
-func (t EmailType) String() string {
-	switch t {
-	case VerificationEmail:
-		return "send-verification-email"
-	case WelcomeEmail:
-		return "send-welcome-email"
-	case ForgotPasswordEmail:
-		return "forgot-password"
-	default:
-		return ""
-	}
-}
 
 type EmailJOB struct {
 	Type EmailType
@@ -35,7 +23,8 @@ type EmailJOB struct {
 	Data map[string]interface{} `json:"data"`
 }
 
-func (job EmailJOB) HandleEmailJob() (string, string, error) {
+func (job *EmailJOB) HandleEmailJob() (string, string, error) {
+	job.Data = make(map[string]interface{})
 	body, err := job.parseEmailTemplate()
 	if err != nil {
 		return "", "", err
@@ -47,11 +36,10 @@ func (job EmailJOB) HandleEmailJob() (string, string, error) {
 		ForgotPasswordEmail: "Reset your password 🔐",
 	}[job.Type]
 
-	return subject, body, err
+	return body, subject, err
 }
 
-func (job EmailJOB) parseEmailTemplate() (string, error) {
-
+func (job *EmailJOB) parseEmailTemplate() (string, error) {
 	var templ string
 
 	switch job.Type {
@@ -62,10 +50,10 @@ func (job EmailJOB) parseEmailTemplate() (string, error) {
 	case VerificationEmail:
 		templ = "templates/verification_email.html"
 	default:
-		return "", fmt.Errorf("email template not found...")
+		return "", fmt.Errorf("email template not found")
 	}
 
-	tmpl, err := template.New("email").ParseFS(templateFS, templ)
+	tmpl, err := template.ParseFS(templateFS, templ)
 
 	if err != nil {
 		return "", err
