@@ -1,41 +1,142 @@
 package jobs
 
 import (
+	"context"
+	"fmt"
 	"runtime"
 	"sync"
+	"time"
 
 	"github.com/kehl-gopher/logi/internal/config"
 	"github.com/kehl-gopher/logi/internal/utils"
 	"github.com/kehl-gopher/logi/pkg/repository/rabbitmq"
 )
 
-type QueueProcessor struct {
-	qm         *sync.Mutex
-	RM         *rabbitmq.RabbitMQ
-	workers    int
-	name       string
-	exchange   string
-	durable    bool
-	routingKey string
-	conf       *config.AppConfig
-	log        *utils.Log
+type ConsumerManager struct {
+	qm             *sync.Mutex
+	RM             *rabbitmq.RabbitMQ
+	conf           *config.AppConfig
+	log            *utils.Log
+	workers        int
+	queueProcessor []QueueProcessor
+	ctx            context.Context
+	cancelFunc     context.CancelFunc
+	wg             *sync.WaitGroup
+	done           chan struct{}
 }
 
-func NewQueueProcessor(r *rabbitmq.RabbitMQ, name string, durable bool, routingKey, exchange string, log *utils.Log, conf *config.AppConfig) *QueueProcessor {
+func NewConsumerManager(log *utils.Log, conf *config.Config) *ConsumerManager {
+	qm := new(sync.Mutex)
+	wg := new(sync.WaitGroup)
 	workers := runtime.NumCPU() * 2
-	return &QueueProcessor{
-		qm:         new(sync.Mutex),
-		RM:         r,
-		workers:    workers,
-		name:       name,
-		durable:    durable,
-		routingKey: routingKey,
-		exchange:   exchange,
-		log:        log,
-		conf:       conf,
+	done := make(chan struct{})
+	qp := make([]QueueProcessor, 0)
+
+	ctx, cancel := context.WithCancel(context.Background())
+	return &ConsumerManager{
+		qm:             qm,
+		wg:             wg,
+		done:           done,
+		log:            log,
+		ctx:            ctx,
+		cancelFunc:     cancel,
+		queueProcessor: qp,
+		workers:        workers,
+		conf:           &conf.APP_CONFIG,
 	}
 }
 
-func (rq *QueueProcessor) Processor() {
+// I need this to start a processor engine that continously run and
+// ensure the queues is being read when data is inserted...
+// it listens to events and processes them accordingly
+// hopefully you work as expected.. LOL
 
+func (c *ConsumerManager) AddProcessor(q QueueProcessor) {
+	c.queueProcessor = append(c.queueProcessor, q)
+}
+
+func (c *ConsumerManager) processWorker(p QueueProcessor) {
+	defer c.wg.Done()
+
+	backoff := time.Second
+	maxBackoff := time.Second * 10
+
+	for {
+		select {
+		case <-c.ctx.Done():
+			utils.PrintLog(c.log, fmt.Sprintf("stopping processor for queue %s", p.name), utils.DebugLevel)
+			return
+		default:
+			if err := c.runProcessor(p); err != nil {
+				select {
+				case <-time.After(backoff):
+					if backoff > maxBackoff {
+						backoff = maxBackoff
+					}
+				case <-c.ctx.Done():
+					return
+				}
+			} else {
+				backoff = maxBackoff
+			}
+		}
+	}
+
+}
+
+func (c *ConsumerManager) runProcessor(p QueueProcessor) error {
+	msg, err := p.rq.ConsumeQueue(context.Background(), p.name, p.exchange, p.routingKey, p.durable)
+
+	if err != nil {
+		return fmt.Errorf("failed to consume queue: %w", err)
+	}
+
+	var i int = 1
+	for ; i <= p.workers; i++ {
+		c.wg.Add(1)
+		go func(id int) {
+			select {
+			case dev, ok := <-msg:
+				if !ok {
+					utils.PrintLog(c.log, fmt.Sprintf("Queue %s worker %d: channel closed", p.name, id), utils.WarnLevel)
+				}
+				fmt.Println(dev)
+			case <-c.done:
+				return
+			}
+		}(i)
+	}
+
+	<-c.ctx.Done()
+
+	done := make(chan struct{})
+	go func() {
+		c.wg.Wait()
+		close(done)
+	}()
+
+	select {
+	case <-done:
+	case <-time.After(30 * time.Second):
+		utils.PrintLog(c.log, fmt.Sprintf("Workers for queue %s didn't finish within 30s", p.name), utils.WarnLevel)
+	}
+	return nil
+}
+
+func (c *ConsumerManager) cancel() {
+	close(c.done)
+	c.cancelFunc()
+}
+
+func (c *ConsumerManager) Stop() {
+
+	c.wg.Wait()
+	c.cancel()
+}
+func (c *ConsumerManager) Start() {
+
+	for _, p := range c.queueProcessor {
+		c.wg.Add(1)
+		go c.processWorker(p)
+	}
 }
