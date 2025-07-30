@@ -2,25 +2,22 @@ package semail
 
 import (
 	"context"
-	"fmt"
 	"time"
 
-	"github.com/kehl-gopher/logi/internal/jobs"
+	"github.com/kehl-gopher/logi/internal/config"
+	"github.com/kehl-gopher/logi/internal/utils"
 	"github.com/kehl-gopher/logi/pkg/repository/rabbitmq"
 )
 
-func PublishToEmailQUeue(rq *rabbitmq.RabbitMQ, name, routingKey string, body []byte) error {
+func PublishToEmailQUeue(rq *rabbitmq.RabbitMQ, name, routingKey, exchange string, body []byte, log *utils.Log, conf *config.AppConfig) error {
+
+	time.Sleep(10 * time.Second)
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
-	err := rq.DeclareQueue(ctx, name, routingKey, true, body)
+	err := rq.DeclareQueue(ctx, name, routingKey, exchange, true, body)
 	if err != nil {
 		return err
 	}
 
-	// consume queue background tasks
-	q := jobs.NewQueueProcessor(rq, name, true, routingKey)
-	q.Start()
-
-	fmt.Println("------------------_>")
 	return err
 }

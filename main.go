@@ -56,6 +56,7 @@ func main() {
 	}
 	// rabbitmq connection
 	rq := rabbitmq.NewMQManager(&conf.RabbitMQ, log)
+	rq.EnsureConnection()
 	defer rq.Close()
 
 	r := routes.Setup(log, conf, db, red, rq)

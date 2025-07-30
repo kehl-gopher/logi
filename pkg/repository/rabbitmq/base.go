@@ -7,11 +7,13 @@ import (
 )
 
 type RabbitMQ struct {
-	conf   *config.RabbitMQ
-	log    *utils.Log
-	conn   *amqp091.Connection
-	isConn bool
-	ch     *amqp091.Channel
+	conf             *config.RabbitMQ
+	log              *utils.Log
+	conn             *amqp091.Connection
+	isConn           bool
+	ch               *amqp091.Channel
+	notifyConnClosed chan *amqp091.Error
+	notifyChanClosed chan *amqp091.Error
 }
 
 func NewMQManager(conf *config.RabbitMQ, log *utils.Log) *RabbitMQ {

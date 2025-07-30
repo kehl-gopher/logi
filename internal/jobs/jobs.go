@@ -1,48 +1,41 @@
 package jobs
 
 import (
-	"context"
-	"fmt"
-	"log"
 	"runtime"
-	"time"
+	"sync"
 
+	"github.com/kehl-gopher/logi/internal/config"
+	"github.com/kehl-gopher/logi/internal/utils"
 	"github.com/kehl-gopher/logi/pkg/repository/rabbitmq"
 )
 
 type QueueProcessor struct {
+	qm         *sync.Mutex
 	RM         *rabbitmq.RabbitMQ
 	workers    int
 	name       string
-	receiver   interface{}
+	exchange   string
 	durable    bool
 	routingKey string
+	conf       *config.AppConfig
+	log        *utils.Log
 }
 
-func NewQueueProcessor(r *rabbitmq.RabbitMQ, name string, durable bool, routingKey string) *QueueProcessor {
+func NewQueueProcessor(r *rabbitmq.RabbitMQ, name string, durable bool, routingKey, exchange string, log *utils.Log, conf *config.AppConfig) *QueueProcessor {
 	workers := runtime.NumCPU() * 2
-	return &QueueProcessor{RM: r, workers: workers, name: name, durable: durable, routingKey: routingKey}
-}
-
-func (q *QueueProcessor) ProcessQueue() {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-	msgs, err := q.RM.ConsumeQueue(ctx, q.name, q.routingKey, q.durable)
-	if err != nil {
-		log.Printf("failed to read data from queue: %v", err)
-		panic(err)
-	}
-	for i := 1; i <= q.workers; i++ {
-		go func() {
-			for d := range msgs {
-				fmt.Printf("Worker processing message: %s\n", string(d.Body))
-				d.Ack(false)
-			}
-		}()
+	return &QueueProcessor{
+		qm:         new(sync.Mutex),
+		RM:         r,
+		workers:    workers,
+		name:       name,
+		durable:    durable,
+		routingKey: routingKey,
+		exchange:   exchange,
+		log:        log,
+		conf:       conf,
 	}
 }
 
-func (q *QueueProcessor) Start() {
-	fmt.Println("start queue... jor")
-	go q.ProcessQueue()
+func (rq *QueueProcessor) Processor() {
+
 }

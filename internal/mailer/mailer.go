@@ -23,7 +23,7 @@ var templateFS embed.FS
 type Mailer struct {
 	dialer *mail.Dialer
 	sender string
-	Conf   *config.Config
+	Conf   *config.AppConfig
 	Logs   *utils.Log
 }
 
@@ -35,18 +35,18 @@ type Email struct {
 	data      map[string]interface{}
 }
 
-func NewMailer(host string, port int, username, password, sender string, conf *config.Config, log *utils.Log) Mailer {
+func NewMailer(host string, port int, username, password, sender string, conf *config.AppConfig, log *utils.Log) Mailer {
 	dialer := mail.NewDialer(host, port, username, password)
 	dialer.RetryFailure = true
 	dialer.Timeout = 5 * time.Second
 	return Mailer{dialer: dialer, sender: sender, Conf: conf, Logs: log}
 }
 
-func NewEmail(to string, body []byte, subject string, att string, attName string, data map[string]interface{}) Email {
+func NewEmail(to string, subject string, att string, attName string, data map[string]interface{}) Email {
 	return Email{Recipient: to, Subject: subject, Att: att, AttName: attName, data: data}
 }
 
-func (m Mailer) SendEmail(recipient, temp string, e Email) error {
+func (m Mailer) email(temp string, e Email) error {
 	var body bytes.Buffer
 
 	e.data = addDataTemplate(e.data, m.Conf)
@@ -74,7 +74,7 @@ func (m Mailer) sendEmail(body string, e Email) error {
 	msg.SetHeader("To", e.Recipient)
 	msg.SetBody("text/html", body)
 
-	const maxRetries = 5
+	const maxRetries = 3
 	var lastErr error
 
 	for attempt := 1; attempt <= maxRetries; attempt++ {
@@ -100,6 +100,22 @@ func (m Mailer) sendEmail(body string, e Email) error {
 	return lastErr
 }
 
+func SendWelcomeEmails(recipient string, conf *config.AppConfig, lg *utils.Log) error {
+	port, err := utils.PortResolver(conf.SMTP_PORT)
+	if err != nil {
+		return err
+	}
+
+	m := NewMailer(conf.SMTP_HOST, port, conf.SMTP_USERNAME, conf.SMTP_PASSWORD, conf.SMTP_USERNAME, conf, lg)
+	subject := "Thanks for joining logi 🎉"
+	e := NewEmail(recipient, subject, "", "", nil)
+	err = m.email("welcome_email.html", e)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func isNetworkError(err error) bool {
 	var netErr net.Error
 	var dnsErr *net.DNSError
@@ -122,8 +138,8 @@ func isNetworkError(err error) bool {
 	return false
 }
 
-func addDataTemplate(data map[string]interface{}, conf *config.Config) map[string]interface{} {
-	data["frontend_url"] = conf.APP_CONFIG.FRONTEND_URL
+func addDataTemplate(data map[string]interface{}, conf *config.AppConfig) map[string]interface{} {
+	data["frontend_url"] = conf.FRONTEND_URL
 
 	return data
 }

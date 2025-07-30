@@ -38,13 +38,16 @@ func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
 
-	e := mailer.SendWelcomeEmail{Email: auth.Email}
+	e := mailer.EmailJOB{
+		To:   auth.Email,
+		Type: mailer.WelcomeEmail,
+	}
 	body, err := utils.MarshalJSON(e)
 	if err != nil {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
-	eVal := mailer.SendWelcomeemail.GetValue()
-	err = semail.PublishToEmailQUeue(a.RM, "", eVal, body)
+	eval := mailer.WelcomeEmail.String()
+	err = semail.PublishToEmailQUeue(a.RM, eval, "email.welcome", "email_exchange", body, a.Log, &a.Conf.APP_CONFIG)
 
 	if err != nil {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
