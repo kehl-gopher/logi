@@ -90,7 +90,6 @@ func (c *ConsumerManager) runProcessor(p QueueProcessor) error {
 	if err != nil {
 		return fmt.Errorf("failed to consume queue: %w", err)
 	}
-
 	var i int = 1
 	for ; i <= p.workers; i++ {
 		c.wg.Add(1)
@@ -101,7 +100,7 @@ func (c *ConsumerManager) runProcessor(p QueueProcessor) error {
 					utils.PrintLog(c.log, fmt.Sprintf("Queue %s worker %d: channel closed", p.name, id), utils.WarnLevel)
 				}
 				fmt.Println(dev)
-			case <-c.done:
+			case <-c.ctx.Done():
 				return
 			}
 		}(i)
@@ -109,14 +108,13 @@ func (c *ConsumerManager) runProcessor(p QueueProcessor) error {
 
 	<-c.ctx.Done()
 
-	done := make(chan struct{})
 	go func() {
 		c.wg.Wait()
-		close(done)
+		close(c.done)
 	}()
 
 	select {
-	case <-done:
+	case <-c.done:
 	case <-time.After(30 * time.Second):
 		utils.PrintLog(c.log, fmt.Sprintf("Workers for queue %s didn't finish within 30s", p.name), utils.WarnLevel)
 	}
@@ -124,14 +122,14 @@ func (c *ConsumerManager) runProcessor(p QueueProcessor) error {
 }
 
 func (c *ConsumerManager) cancel() {
-	close(c.done)
 	c.cancelFunc()
 }
 
 func (c *ConsumerManager) Stop() {
-
+	fmt.Println("Stopping consumer manager...")
 	c.wg.Wait()
 	c.cancel()
+	fmt.Println("Consumer manager stopped")
 }
 func (c *ConsumerManager) Start() {
 
