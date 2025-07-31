@@ -17,5 +17,6 @@ func authRoutes(r *gin.Engine, log *utils.Log, conf *config.Config, db pdb.Datab
 		api.POST("/signup", auth.CreateUser)
 		api.POST("/signin", auth.SignInUser)
 		api.POST("/verify-token", auth.VerifyToken)
+		api.POST("/forgot-password", auth.ForgotPassword)
 	}
 }

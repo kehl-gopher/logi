@@ -16,7 +16,7 @@ func (a *AuthHandler) VerifyToken(c *gin.Context) {
 		UserId string `json:"user_id" binding:"required"`
 	}
 
-	if err := c.ShouldBind(&token); err != nil {
+	if err := c.ShouldBindJSON(&token); err != nil {
 		var ve validator.ValidationErrors
 		if errors.As(err, &ve) {
 			resp := utils.ValidationErrorResponse(ve)
