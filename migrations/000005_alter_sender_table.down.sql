@@ -1,0 +1,14 @@
+ALTER TABLE sender
+ALTER COLUMN first_name ADD CONSTRAINT NOT NULL;
+
+
+ALTER TABLE sender
+ALTER COLUMN last_name ADD CONSTRAINT NOT NULL;
+
+
+ALTER TABLE sender
+DROP COLUMN is_verified;
+
+
+ALTER TABLE sender
+DROP COLUMN is_active;

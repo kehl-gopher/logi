@@ -48,10 +48,18 @@ func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
 	err = semail.PublishToEmailQUeue(a.RM, jobs.EMAIL_QUEUE, "email.welcome", "email_exchange", body, a.Log, &a.Conf.APP_CONFIG)
+	if err != nil {
+		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
+	}
+
+	auth.IsActive = true
+
+	err = auth.UpdateUser(a.Db, a.Log, "is_active")
 
 	if err != nil {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
+
 	return http.StatusCreated, utils.SuccessfulResponse(http.StatusCreated, "user created successfully", auth)
 }
 

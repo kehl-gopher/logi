@@ -1,0 +1,2 @@
+ALTER TABLE sender
+ADD COLUMN phone_number VARCHAR(50);

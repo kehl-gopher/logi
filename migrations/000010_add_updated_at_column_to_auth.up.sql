@@ -1,0 +1,2 @@
+ALTER TABLE auth
+ADD COLUMN updated_at TIMESTAMPTZ;

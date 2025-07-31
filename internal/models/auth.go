@@ -17,6 +17,9 @@ type Auth struct {
 	Id            string      `bun:"id" json:"id"`
 	Email         string      `bun:"email" json:"email"`
 	Password      string      `bun:"password" json:"-"`
+	IsActive      bool        `bun:"is_active" json:"-"`
+	IsVerified    bool        `bun:"is_verified" json:"is_verified"`
+	Deactivated   bool        `bun:"deactivated" json:"-"`
 	CreatedAt     time.Time   `bun:"created_at,nullzero,default" json:"created_at"`
 	Token         AccessToken `bun:"-" json:"access_token"`
 }
@@ -35,7 +38,7 @@ func (a *Auth) CreateUser(pdb pdb.Database, rdb rdb.RedisDB, conf *config.Config
 	}
 	a.Password = password
 
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	err = pdb.Insert(ctx, a)
 
@@ -83,6 +86,21 @@ func (a *Auth) GetUser(pdb pdb.Database, rdb rdb.RedisDB, conf *config.Config, l
 		return err
 	}
 	a.Token = *token
+	return nil
+}
+
+func (a *Auth) UpdateUser(pdb pdb.Database, log *utils.Log, column string) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	query := ` id = ?`
+	err := pdb.UpdateModel(ctx, a, column, query, a.Id)
+
+	if err != nil {
+		utils.PrintLog(log, "failed to update user auth table", utils.ErrorLevel)
+		return err
+	}
+
 	return nil
 }
 
