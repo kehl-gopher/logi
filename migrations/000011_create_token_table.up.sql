@@ -1,0 +1,6 @@
+CREATE TABLE auth_token (
+    token_id TEXT PRIMARY KEY,
+    tokens  VARCHAR(6) UNIQUE NOT NULL,
+    user_id TEXT NOT NULL UNIQUE REFERENCES auth(id) ON DELETE CASCADE,
+    added_at TIMESTAMP NOT NULL
+);

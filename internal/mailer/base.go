@@ -18,13 +18,12 @@ const (
 )
 
 type EmailJOB struct {
-	Type EmailType
-	To   string
+	Type EmailType              `json:"type"`
+	To   string                 `json:"to"`
 	Data map[string]interface{} `json:"data"`
 }
 
 func (job *EmailJOB) HandleEmailJob() (string, string, error) {
-	job.Data = make(map[string]interface{})
 	body, err := job.parseEmailTemplate()
 	if err != nil {
 		return "", "", err
@@ -48,7 +47,7 @@ func (job *EmailJOB) parseEmailTemplate() (string, error) {
 	case ForgotPasswordEmail:
 		templ = "templates/forgot_password_email.html"
 	case VerificationEmail:
-		templ = "templates/verification_email.html"
+		templ = "templates/verification_mail.html"
 	default:
 		return "", fmt.Errorf("email template not found")
 	}

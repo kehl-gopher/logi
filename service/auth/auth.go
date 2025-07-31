@@ -2,7 +2,9 @@ package sauth
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/kehl-gopher/logi/internal/config"
 	"github.com/kehl-gopher/logi/internal/jobs"
@@ -30,7 +32,6 @@ func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {
 	}
 
 	err := auth.CreateUser(a.Db, a.Rdb, a.Conf, a.Log)
-
 	if err != nil {
 		if errors.Is(err, utils.ErrorEmailAlreadyExists) {
 			message := "bad error response"
@@ -39,16 +40,35 @@ func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
 
+	token, err := utils.Tokens()
+	if err != nil {
+		utils.PrintLog(a.Log, fmt.Sprintf("unable to generate token: %v", err), utils.ErrorLevel)
+		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
+	}
+
+	fmt.Println(token)
+	at := models.AuthToken{Token: token, AddedAt: time.Now().Add(time.Minute * 20), UserID: auth.Id}
+	err = at.CreateToken(a.Db, a.Log)
+	if err != nil {
+		utils.PrintLog(a.Log, fmt.Sprintf("unable to create user token: %v", err), utils.ErrorLevel)
+		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
+	}
+
 	e := mailer.EmailJOB{
 		To:   auth.Email,
-		Type: mailer.WelcomeEmail,
+		Type: mailer.VerificationEmail,
+		Data: map[string]interface{}{
+			"code": at.Token,
+		},
 	}
 	body, err := utils.MarshalJSON(e)
 	if err != nil {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
-	err = semail.PublishToEmailQUeue(a.RM, jobs.EMAIL_QUEUE, "email.welcome", "email_exchange", body, a.Log, &a.Conf.APP_CONFIG)
+
+	err = semail.PublishToEmailQUeue(a.RM, jobs.EMAIL_QUEUE, "email.verify", "email_exchange", body, a.Log, &a.Conf.APP_CONFIG)
 	if err != nil {
+		utils.PrintLog(a.Log, fmt.Sprintf("unable to publish to email queue: %v", err), utils.ErrorLevel)
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
 

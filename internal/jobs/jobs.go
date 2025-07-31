@@ -149,14 +149,25 @@ func (c *ConsumerManager) Start() {
 
 func processMessage(dev amqp091.Delivery, conf *config.AppConfig, lg *utils.Log) error {
 	key := dev.RoutingKey
-	var ej mailer.EmailJOB
 	switch key {
 	case "email.welcome":
+		var ej mailer.EmailJOB
 		err := utils.UnmarshalJSON(dev.Body, &ej)
 		if err != nil {
 			return err
 		}
 		if err := ej.SendWelcomeEmails(conf, lg); err != nil {
+			return err
+		}
+	case "email.verify":
+		var ej mailer.EmailJOB
+		err := utils.UnmarshalJSON(dev.Body, &ej)
+		fmt.Println(ej)
+		if err != nil {
+			return err
+		}
+
+		if err := ej.SendVerificationMail(conf, lg); err != nil {
 			return err
 		}
 	}

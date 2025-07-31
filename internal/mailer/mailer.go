@@ -42,24 +42,24 @@ func NewEmail(to string, subject string, att string, attName string, data map[st
 	return Email{Recipient: to, Subject: subject, Att: att, AttName: attName, data: data}
 }
 
-func (m Mailer) email() error {
-	// var body bytes.Buffer
+func email(conf *config.AppConfig, e EmailJOB, lg *utils.Log) error {
+	port, err := utils.PortResolver(conf.SMTP_PORT)
+	if err != nil {
+		return err
+	}
 
-	// e.data = addDataTemplate(e.data, m.Conf)
-	// tmpl, err := template.New("email").ParseFS(templateFS, filepath.Join("templates", temp))
-	// if err != nil {
-	// 	log.Println(err.Error())
-	// 	return err
-	// }
-	// err = tmpl.Execute(&body, e.data)
-	// if err != nil {
-	// 	return err
-	// }
+	m := NewMailer(conf.SMTP_HOST, port, conf.SMTP_USERNAME, conf.SMTP_PASSWORD, conf.SMTP_USERNAME, conf, lg)
 
-	// if err := m.sendEmail(body.String(), e); err != nil {
-	// 	return err
-	// }
-	// return nil
+	body, subject, err := e.HandleEmailJob()
+
+	if err != nil {
+		return err
+	}
+
+	if err := m.sendEmail(body, subject, e); err != nil {
+		utils.PrintLog(lg, fmt.Sprintf("failed to send email: %v", err), utils.ErrorLevel)
+		return err
+	}
 
 	return nil
 }
@@ -102,24 +102,16 @@ func (m Mailer) sendEmail(body string, subject string, e EmailJOB) error {
 }
 
 func (e *EmailJOB) SendWelcomeEmails(conf *config.AppConfig, lg *utils.Log) error {
-	port, err := utils.PortResolver(conf.SMTP_PORT)
-	if err != nil {
+	if err := email(conf, *e, lg); err != nil {
 		return err
 	}
+	return nil
+}
 
-	m := NewMailer(conf.SMTP_HOST, port, conf.SMTP_USERNAME, conf.SMTP_PASSWORD, conf.SMTP_USERNAME, conf, lg)
-
-	body, subject, err := e.HandleEmailJob()
-
-	if err != nil {
+func (e *EmailJOB) SendVerificationMail(conf *config.AppConfig, lg *utils.Log) error {
+	if err := email(conf, *e, lg); err != nil {
 		return err
 	}
-
-	if err := m.sendEmail(body, subject, *e); err != nil {
-		utils.PrintLog(lg, fmt.Sprintf("failed to send email: %v", err), utils.ErrorLevel)
-		return err
-	}
-
 	return nil
 }
 
@@ -147,6 +139,5 @@ func isNetworkError(err error) bool {
 
 func addDataTemplate(data map[string]interface{}, conf *config.AppConfig) map[string]interface{} {
 	data["frontend_url"] = conf.FRONTEND_URL
-
 	return data
 }
