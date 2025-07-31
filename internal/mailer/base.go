@@ -23,6 +23,12 @@ type EmailJOB struct {
 	Data map[string]interface{} `json:"data"`
 }
 
+func NewEmailJob(typed EmailType, to string, data map[string]interface{}) EmailJOB {
+	if data == nil {
+		data = make(map[string]interface{})
+	}
+	return EmailJOB{To: to, Type: typed, Data: data}
+}
 func (job *EmailJOB) HandleEmailJob() (string, string, error) {
 	body, err := job.parseEmailTemplate()
 	if err != nil {

@@ -96,20 +96,21 @@ func (c *ConsumerManager) runProcessor(p QueueProcessor) error {
 	for ; i <= p.workers; i++ {
 		c.wg.Add(1)
 		go func(id int) {
-			select {
-			case dev, ok := <-msg:
-				if !ok {
-					utils.PrintLog(c.log, fmt.Sprintf("Queue %s worker %d: channel closed", p.name, id), utils.WarnLevel)
+			for {
+				select {
+				case dev, ok := <-msg:
+					if !ok {
+						utils.PrintLog(c.log, fmt.Sprintf("Queue %s worker %d: channel closed", p.name, id), utils.WarnLevel)
+					}
+					if err := c.processMessage(dev, c.conf, c.log); err != nil {
+						utils.PrintLog(c.log, fmt.Sprintf("Worker %d failed to process message: %v", id, err), utils.ErrorLevel)
+						dev.Nack(false, true)
+					} else {
+						dev.Ack(false)
+					}
+				case <-c.ctx.Done():
+					return
 				}
-
-				if err := processMessage(dev, c.conf, c.log); err != nil {
-					utils.PrintLog(c.log, fmt.Sprintf("Worker %d failed to process message: %v", id, err), utils.ErrorLevel)
-					dev.Nack(false, true)
-				} else {
-					dev.Ack(false)
-				}
-			case <-c.ctx.Done():
-				return
 			}
 		}(i)
 	}
@@ -147,7 +148,7 @@ func (c *ConsumerManager) Start() {
 	fmt.Printf("Started %d queue processors\n", len(c.queueProcessor))
 }
 
-func processMessage(dev amqp091.Delivery, conf *config.AppConfig, lg *utils.Log) error {
+func (c *ConsumerManager) processMessage(dev amqp091.Delivery, conf *config.AppConfig, lg *utils.Log) error {
 	key := dev.RoutingKey
 	switch key {
 	case "email.welcome":
@@ -156,20 +157,24 @@ func processMessage(dev amqp091.Delivery, conf *config.AppConfig, lg *utils.Log)
 		if err != nil {
 			return err
 		}
+		c.qm.Lock()
 		if err := ej.SendWelcomeEmails(conf, lg); err != nil {
+			c.qm.Unlock()
 			return err
 		}
+		c.qm.Unlock()
 	case "email.verify":
 		var ej mailer.EmailJOB
 		err := utils.UnmarshalJSON(dev.Body, &ej)
-		fmt.Println(ej)
 		if err != nil {
 			return err
 		}
-
+		c.qm.Lock()
 		if err := ej.SendVerificationMail(conf, lg); err != nil {
+			c.qm.Unlock()
 			return err
 		}
+		c.qm.Unlock()
 	}
 	return nil
 }

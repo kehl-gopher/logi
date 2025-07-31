@@ -38,11 +38,10 @@ func (at *AuthToken) GetToken(pdb pdb.Database, log *utils.Log) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	query := ` tokens = ? AND user_id = ? AND added_at <= NOW()`
+	query := ` tokens = ? AND user_id = ? AND added_at >= NOW()`
 	err := pdb.SelectSingle(ctx, at, query, at.Token, at.UserID)
 
 	if err != nil {
-		fmt.Println(err.Error())
 		return err
 	}
 

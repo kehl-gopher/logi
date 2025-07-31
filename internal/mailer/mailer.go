@@ -68,7 +68,6 @@ func (m Mailer) sendEmail(body string, subject string, e EmailJOB) error {
 	msg := mail.NewMessage()
 	msg.SetHeader("Subject", subject)
 	msg.SetAddressHeader("From", m.sender, "Logi Team") // Add name
-	// msg.SetHeader("Content-Type", "text/html; charset=UTF-8")
 	msg.SetBody("text/html", body)
 	msg.SetHeader("To", e.To)
 

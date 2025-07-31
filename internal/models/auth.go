@@ -62,8 +62,8 @@ func (a *Auth) CreateUser(pdb pdb.Database, rdb rdb.RedisDB, conf *config.Config
 	return nil
 }
 
-func (a *Auth) GetUser(pdb pdb.Database, rdb rdb.RedisDB, conf *config.Config, log *utils.Log) error {
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+func (a *Auth) GetUserByEmail(pdb pdb.Database, rdb rdb.RedisDB, conf *config.Config, log *utils.Log) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	query := `email = ?`
 	password := a.Password
@@ -86,6 +86,17 @@ func (a *Auth) GetUser(pdb pdb.Database, rdb rdb.RedisDB, conf *config.Config, l
 		return err
 	}
 	a.Token = *token
+	return nil
+}
+
+func (a *Auth) GetUserById(pdb pdb.Database, conf *config.Config, log *utils.Log) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	query := `id = ?`
+	err := pdb.SelectSingle(ctx, a, query, a.Id)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 

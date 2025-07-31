@@ -54,13 +54,9 @@ func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
 
-	e := mailer.EmailJOB{
-		To:   auth.Email,
-		Type: mailer.VerificationEmail,
-		Data: map[string]interface{}{
-			"code": at.Token,
-		},
-	}
+	data := map[string]interface{}{
+		"code": at.Token}
+	e := mailer.NewEmailJob(mailer.VerificationEmail, auth.Email, data)
 	body, err := utils.MarshalJSON(e)
 	if err != nil {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
@@ -89,7 +85,7 @@ func (a *Auth) UserLogIn(email string, password string) (int, utils.Response) {
 		Password: password,
 	}
 
-	err := auth.GetUser(a.Db, a.Rdb, a.Conf, a.Log)
+	err := auth.GetUserByEmail(a.Db, a.Rdb, a.Conf, a.Log)
 
 	if err != nil {
 		if errors.Is(err, utils.ErrPasswordNotMatch) || errors.Is(err, utils.ErrorNotFound) {
