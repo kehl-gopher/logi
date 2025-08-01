@@ -71,7 +71,9 @@ func (m Mailer) sendEmail(body string, subject string, e EmailJOB) error {
 	msg.SetBody("text/html", body)
 	msg.SetHeader("To", e.To)
 
-	const maxRetries = 3
+	const maxRetries = 5
+	// backoff = time.Second
+	// maxBackoff = time.Second * 5
 	var lastErr error
 
 	for attempt := 1; attempt <= maxRetries; attempt++ {
@@ -108,6 +110,13 @@ func (e *EmailJOB) SendWelcomeEmails(conf *config.AppConfig, lg *utils.Log) erro
 }
 
 func (e *EmailJOB) SendVerificationMail(conf *config.AppConfig, lg *utils.Log) error {
+	if err := email(conf, *e, lg); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *EmailJOB) SendForgotPassword(conf *config.AppConfig, lg *utils.Log) error {
 	if err := email(conf, *e, lg); err != nil {
 		return err
 	}

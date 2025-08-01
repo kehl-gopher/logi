@@ -1,0 +1,7 @@
+CREATE TABLE password_reset_link (
+    id TEXT PRIMARY KEY,
+    user_id TEXT UNIQUE NOT NULL REFERENCES auth(id) ON DELETE CASCADE,
+    link TEXT UNIQUE NOT NULL,
+    expires_at TIMESTAMP,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)

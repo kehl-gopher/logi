@@ -85,7 +85,7 @@ func (a *Auth) UserLogIn(email string, password string) (int, utils.Response) {
 		Password: password,
 	}
 
-	err := auth.GetUserByEmail(a.Db, a.Rdb, a.Conf, a.Log)
+	err := auth.GetUserByEmailSignIn(a.Db, a.Rdb, a.Conf, a.Log)
 
 	if err != nil {
 		if errors.Is(err, utils.ErrPasswordNotMatch) || errors.Is(err, utils.ErrorNotFound) {

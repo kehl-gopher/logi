@@ -76,6 +76,8 @@ func (b *BaseConfig) SetupConfig() *Config {
 		APP_CONFIG: AppConfig{
 			APP_VERSION:      b.APP_VERSION,
 			APP_ENV:          b.APP_ENV,
+			APP_URL:          b.APP_URL,
+			FRONTEND_URL:     b.FRONTEND_URL,
 			JWT_SECRETKEY:    b.JWT_SECRETKEY,
 			JWT_DURATIONTIME: b.JWT_DURATIONTIME,
 			SMTP_USERNAME:    b.SMTP_USERNAME,

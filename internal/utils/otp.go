@@ -3,6 +3,8 @@ package utils
 import (
 	"crypto/rand"
 	"encoding/base64"
+
+	gonanoid "github.com/matoous/go-nanoid/v2"
 )
 
 func Tokens() (string, error) {
@@ -18,4 +20,9 @@ func generateSecureToken(n int) (string, error) {
 	}
 
 	return base64.RawURLEncoding.EncodeToString(b)[:n], nil
+}
+
+func NanoId() (string, error) {
+	id, err := gonanoid.New(4)
+	return id, err
 }

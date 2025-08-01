@@ -96,19 +96,22 @@ func (c *ConsumerManager) runProcessor(p QueueProcessor) error {
 	for ; i <= p.workers; i++ {
 		c.wg.Add(1)
 		go func(id int) {
+			defer c.wg.Done()
 			for {
 				select {
 				case dev, ok := <-msg:
 					if !ok {
 						utils.PrintLog(c.log, fmt.Sprintf("Queue %s worker %d: channel closed", p.name, id), utils.WarnLevel)
-					}
-					if err := c.processMessage(dev, c.conf, c.log); err != nil {
-						utils.PrintLog(c.log, fmt.Sprintf("Worker %d failed to process message: %v", id, err), utils.ErrorLevel)
-						dev.Nack(false, true)
+						return
 					} else {
-						dev.Ack(false)
+						if err := c.processMessage(dev, c.conf, c.log); err != nil {
+							utils.PrintLog(c.log, fmt.Sprintf("Worker %d failed to process message: %v", id, err), utils.ErrorLevel)
+							dev.Nack(false, true)
+						} else {
+							dev.Ack(false)
+						}
 					}
-				case <-c.ctx.Done():
+				case <-c.done:
 					return
 				}
 			}
@@ -124,7 +127,7 @@ func (c *ConsumerManager) runProcessor(p QueueProcessor) error {
 
 	select {
 	case <-c.done:
-	case <-time.After(30 * time.Second):
+	case <-time.After(60 * time.Second):
 		utils.PrintLog(c.log, fmt.Sprintf("Workers for queue %s didn't finish within 30s", p.name), utils.WarnLevel)
 	}
 	return nil
@@ -136,8 +139,8 @@ func (c *ConsumerManager) cancel() {
 
 func (c *ConsumerManager) Stop() {
 	fmt.Println("Stopping consumer manager...")
-	c.wg.Wait()
 	c.cancel()
+	c.wg.Wait()
 	fmt.Println("Consumer manager stopped")
 }
 func (c *ConsumerManager) Start() {
@@ -171,6 +174,18 @@ func (c *ConsumerManager) processMessage(dev amqp091.Delivery, conf *config.AppC
 		}
 		c.qm.Lock()
 		if err := ej.SendVerificationMail(conf, lg); err != nil {
+			c.qm.Unlock()
+			return err
+		}
+		c.qm.Unlock()
+	case "email.forgot_password":
+		var ej mailer.EmailJOB
+		err := utils.UnmarshalJSON(dev.Body, &ej)
+		if err != nil {
+			return err
+		}
+		c.qm.Lock()
+		if err := ej.SendForgotPassword(conf, lg); err != nil {
 			c.qm.Unlock()
 			return err
 		}

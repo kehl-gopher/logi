@@ -62,7 +62,7 @@ func (a *Auth) CreateUser(pdb pdb.Database, rdb rdb.RedisDB, conf *config.Config
 	return nil
 }
 
-func (a *Auth) GetUserByEmail(pdb pdb.Database, rdb rdb.RedisDB, conf *config.Config, log *utils.Log) error {
+func (a *Auth) GetUserByEmailSignIn(pdb pdb.Database, rdb rdb.RedisDB, conf *config.Config, log *utils.Log) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	query := `email = ?`
@@ -112,6 +112,20 @@ func (a *Auth) UpdateUser(pdb pdb.Database, log *utils.Log, column string) error
 		return err
 	}
 
+	return nil
+}
+
+func (a *Auth) GetUserByEmail(pdb pdb.Database, log *utils.Log) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	query := `email = ?`
+
+	err := pdb.SelectSingle(ctx, a, query, a.Email)
+
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
