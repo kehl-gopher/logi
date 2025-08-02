@@ -18,6 +18,7 @@ type RedisDB interface {
 
 	Set(ctx context.Context, key string, data interface{}, ttl time.Duration) error
 	Queue(ctx context.Context, key string, data interface{}) error
+	Get(ctx context.Context, key string, receiver interface{}) (interface{}, error)
 }
 
 type redisConn struct {

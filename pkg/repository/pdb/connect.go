@@ -20,9 +20,9 @@ type Database interface {
 	DB() *bun.DB
 	Insert(ctx context.Context, model interface{}) error
 	InsertMany(ctx context.Context, models ...interface{}) error
-	CheckExists(ctx context.Context, query string, model interface{}) (bool, error)
 	SelectSingle(ctx context.Context, model interface{}, query string, args ...interface{}) error
 	UpdateModel(ctx context.Context, model interface{}, column string, query string, args ...interface{}) error
+	CheckExists(ctx context.Context, model interface{}, query string, args ...interface{}) (bool, error)
 }
 
 type postgresConn struct {

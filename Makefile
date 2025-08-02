@@ -42,3 +42,7 @@ migrate-up:
 
 migrate-down:
 	migrate -database $(POSTGRESQL_URL) -path $(MIGRATE_PATH) down
+
+.PHONY: drop
+drop:
+	./main -drop

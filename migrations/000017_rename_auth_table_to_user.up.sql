@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS sender;
+
+
+ALTER TABLE auth
+RENAME TO users;
+
+ALTER TABLE users
+ADD COLUMN first_name VARCHAR(50);
+
+ALTER TABLE users
+ADD COLUMN last_name VARCHAR(50);

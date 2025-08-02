@@ -26,7 +26,7 @@ type Auth struct {
 }
 
 func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {
-	auth := models.Auth{
+	auth := models.User{
 		Email:    email,
 		Password: password,
 	}
@@ -46,7 +46,6 @@ func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
 
-	fmt.Println(token)
 	at := models.AuthToken{Token: token, AddedAt: time.Now().Add(time.Minute * 20), UserID: auth.Id}
 	err = at.CreateToken(a.Db, a.Log)
 	if err != nil {
@@ -76,15 +75,27 @@ func (a *Auth) CreateUser(email string, password string) (int, utils.Response) {
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
 
-	return http.StatusCreated, utils.SuccessfulResponse(http.StatusCreated, "user created successfully", auth)
+	urp := models.UserResponse{
+		Email:        auth.Email,
+		AuthProvider: auth.AuthProvider,
+		Profile: models.ProfileResp{
+			FirstName:  "",
+			LastName:   "",
+			ProfileUrl: "",
+			FullName:   "",
+		},
+		IsVerified: auth.IsVerified,
+		CreatedAt:  auth.CreatedAt.Unix(),
+		Token:      auth.Token,
+	}
+	return http.StatusCreated, utils.SuccessfulResponse(http.StatusCreated, "user created successfully", urp)
 }
 
 func (a *Auth) UserLogIn(email string, password string) (int, utils.Response) {
-	auth := models.Auth{
+	auth := models.User{
 		Email:    email,
 		Password: password,
 	}
-
 	err := auth.GetUserByEmailSignIn(a.Db, a.Rdb, a.Conf, a.Log)
 
 	if err != nil {
@@ -93,5 +104,50 @@ func (a *Auth) UserLogIn(email string, password string) (int, utils.Response) {
 		}
 		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
 	}
-	return http.StatusOK, utils.SuccessfulResponse(http.StatusOK, "login successful", auth)
+	profile := models.Profile{Id: auth.Id}
+	pr, err := profile.GetUserProfile(a.Rdb, a.Log)
+	if err != nil && err.Error() != "cannot fetch data from redis" {
+		return http.StatusInternalServerError, utils.ErrorResponse(500, "", err)
+	}
+	urp := UserResponse(pr, auth.Token, auth)
+	return http.StatusOK, utils.SuccessfulResponse(http.StatusOK, "login successful", urp)
+}
+
+func UserResponse(p interface{}, at models.AccessToken, usr models.User) models.UserResponse {
+
+	if p == nil {
+		return models.UserResponse{
+			Id:    usr.Id,
+			Email: usr.Email,
+			Profile: models.ProfileResp{
+				FirstName:  "",
+				LastName:   "",
+				FullName:   "",
+				ProfileUrl: "",
+			},
+			AuthProvider: "",
+			IsVerified:   usr.IsVerified,
+			CreatedAt:    usr.CreatedAt.Unix(),
+			Token:        at,
+		}
+	}
+	pr, ok := p.(*models.Profile)
+	if !ok {
+		return models.UserResponse{}
+	}
+	fmt.Println(pr.CreatedAt)
+	return models.UserResponse{
+		Id:    pr.Id,
+		Email: pr.Email,
+		Profile: models.ProfileResp{
+			FirstName:  pr.FirstName,
+			LastName:   pr.LastName,
+			FullName:   pr.FullName,
+			ProfileUrl: pr.ProfilePicUrl,
+		},
+		AuthProvider: pr.AuthProvider,
+		IsVerified:   pr.IsVerified,
+		CreatedAt:    pr.CreatedAt.Unix(),
+		Token:        at,
+	}
 }

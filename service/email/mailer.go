@@ -16,6 +16,5 @@ func PublishToEmailQUeue(rq *rabbitmq.RabbitMQ, name, routingKey, exchange strin
 	if err != nil {
 		return err
 	}
-
 	return err
 }

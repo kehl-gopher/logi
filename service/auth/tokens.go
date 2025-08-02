@@ -22,8 +22,7 @@ func (a *Auth) VerifyUserToken(token string, userId string) (int, utils.Response
 		return http.StatusBadRequest, utils.ErrorResponse(http.StatusBadRequest, "Invalid or expired verification code.", nil)
 	}
 
-	au := models.Auth{Id: tken.UserID}
-
+	au := models.User{Id: tken.UserID}
 	err = au.GetUserById(a.Db, a.Conf, a.Log)
 	if err != nil {
 		if errors.Is(err, utils.ErrPasswordNotMatch) || errors.Is(err, utils.ErrorNotFound) {

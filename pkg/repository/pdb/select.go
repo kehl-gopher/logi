@@ -20,8 +20,8 @@ func (p *postgresConn) SelectSingle(ctx context.Context, model interface{}, quer
 	return err
 }
 
-func (p *postgresConn) CheckExists(ctx context.Context, query string, model interface{}) (bool, error) {
-	exists, err := p.bun.NewSelect().Model(model).Where(query).Exists(ctx)
+func (p *postgresConn) CheckExists(ctx context.Context, model interface{}, query string, args ...interface{}) (bool, error) {
+	exists, err := p.bun.NewSelect().Model(model).Where(query, args...).Exists(ctx)
 	if err != nil {
 		return false, err
 	}

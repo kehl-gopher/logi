@@ -11,19 +11,16 @@ import (
 )
 
 func (p *postgresConn) Insert(ctx context.Context, model interface{}) error {
-	r, err := p.bun.NewInsert().
+	err := p.bun.NewInsert().
 		Model(model).
-		Exec(ctx)
+		Returning("*").
+		Scan(ctx)
 	if err != nil {
 		var pgErr *pgconn.PgError
 		if errors.As(err, &pgErr) && pgErr.Code == "23505" {
 			return utils.ErrorEmailAlreadyExists
 		}
 		return fmt.Errorf("unexpected db error: %w", err)
-	}
-
-	if r, err := r.RowsAffected(); err != nil || r != 1 {
-		return utils.ErrorTableInsertFailed
 	}
 	return nil
 }

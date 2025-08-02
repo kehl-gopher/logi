@@ -2,6 +2,7 @@ package auth
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -12,6 +13,7 @@ import (
 	"github.com/kehl-gopher/logi/pkg/repository/rabbitmq"
 	"github.com/kehl-gopher/logi/pkg/repository/rdb"
 	sauth "github.com/kehl-gopher/logi/service/auth"
+	"github.com/markbates/goth/gothic"
 )
 
 type AuthHandler struct {
@@ -71,5 +73,36 @@ func (a *AuthHandler) SignInUser(c *gin.Context) {
 
 	au := sauth.Auth{Db: a.Pdb, Rdb: a.Rdb, Conf: a.Conf, Log: a.Log}
 	statusCode, resp := au.UserLogIn(auth.Email, auth.Password)
+	c.JSON(statusCode, resp)
+}
+
+func (a *AuthHandler) SignInGoogleAuth(c *gin.Context) {
+	q := c.Request.URL.Query()
+	q.Add("provider", "google")
+
+	c.Request.URL.RawQuery = q.Encode()
+	gothic.BeginAuthHandler(c.Writer, c.Request)
+}
+
+func (a *AuthHandler) OAuthCallBack(c *gin.Context) {
+	q := c.Request.URL.Query()
+	q.Add("provider", "google")
+
+	user, err := gothic.CompleteUserAuth(c.Writer, c.Request)
+
+	if err != nil {
+		fmt.Println(err.Error())
+		resp := utils.ErrorResponse(http.StatusInternalServerError, "", err)
+		c.JSON(http.StatusInternalServerError, resp)
+	}
+	au := sauth.Auth{
+		Db:   a.Pdb,
+		Conf: a.Conf,
+		Log:  a.Log,
+		Rdb:  a.Rdb,
+		RM:   a.RM,
+	}
+
+	statusCode, resp := au.CreateGoogleUser(user)
 	c.JSON(statusCode, resp)
 }

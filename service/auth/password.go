@@ -14,7 +14,7 @@ import (
 )
 
 func (a *Auth) ForgotPassword(email string) (int, utils.Response) {
-	fu := models.Auth{Email: email}
+	fu := models.User{Email: email}
 
 	err := fu.GetUserByEmail(a.Db, a.Log)
 	if err != nil {
@@ -29,7 +29,6 @@ func (a *Auth) ForgotPassword(email string) (int, utils.Response) {
 		fmt.Println(err.Error())
 		return http.StatusInternalServerError, utils.ErrorResponse(http.StatusInternalServerError, "", err)
 	}
-	fmt.Println(fu.Id)
 	re := models.ResetPasswordLink{
 		UserID:    fu.Id,
 		ExpiresAt: time.Now().Add(time.Minute * 30),
@@ -79,7 +78,7 @@ func (a *Auth) ChangePassword(userId string, password string, token string) (int
 		return http.StatusInternalServerError, utils.ErrorResponse(http.StatusInternalServerError, "", err)
 	}
 
-	au := models.Auth{
+	au := models.User{
 		Id:       userId,
 		Password: password,
 	}
