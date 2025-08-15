@@ -1,6 +1,6 @@
 # Logi – Door-to-Door Delivery API
 
-Logi is a powerful door-to-door delivery API service that enables users to send and receive packages with real-time tracking. From dispatch to drop-off, it streamlines coordination between senders, receivers, and drivers — without requiring the receiver to install an app.
+Logi is a powerful door-to-door delivery API service that enables users to send and receive packages with real-time tracking. From dispatch to drop-off, it streamlines coordination between senders, receivers, and drivers  without requiring the receiver to install an app.
 
 ---
 
